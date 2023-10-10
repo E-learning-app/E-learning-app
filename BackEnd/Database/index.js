@@ -1,4 +1,3 @@
-
 const { Sequelize, DataTypes } = require("sequelize");
 const config = require("./config/config.json");
 
@@ -10,7 +9,8 @@ const db = {};
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 db.user = require("./models/user")(sequelize, DataTypes);
-db.class = require("./models/class")(sequelize, DataTypes);
+db.Class = require("./models/class")(sequelize, DataTypes);
+db.Course = require("./models/course")(sequelize, DataTypes);
 
 const connect = async () => {
   try {
@@ -21,8 +21,7 @@ const connect = async () => {
   }
 };
 
-// db.sequelize.sync({ force: true });
+//db.sequelize.sync({ force: true });
 
 connect();
 module.exports = db;
-
