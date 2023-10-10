@@ -1,3 +1,4 @@
+
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define("users", {
     firstName: {
@@ -23,3 +24,4 @@ module.exports = (sequelize, DataTypes) => {
   });
   return User;
 };
+
