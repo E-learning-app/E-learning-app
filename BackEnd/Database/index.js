@@ -2,14 +2,17 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const config = require("./config/config.json");
 
-const sequelize = new Sequelize(config.database, config.user, config.password, {
+const sequelize = new Sequelize(config.database, config.Username, config.password, {
   host: config.host,
   dialect: "mysql",
 });
 const db = {};
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
-db.user = require("./models/user")(sequelize, DataTypes);
+
+
+
+db.User =require("./models/user")(sequelize, DataTypes);;
 db.class = require("./models/class")(sequelize, DataTypes);
 
 const connect = async () => {
