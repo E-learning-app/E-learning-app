@@ -3,6 +3,7 @@ const app = express();
 const cors = require("cors");
 const db = require("./Database/index");
 const classRouter = require("./routes/class");
+const UserRouter =require("./routes/user")
 const courseRouter = require("./routes/course");
 
 
