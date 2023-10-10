@@ -15,4 +15,5 @@ router.post("/", addClass);
 router.put("/:classId", updateClass);
 router.delete("/:classId", deleteClass);
 
+
 module.exports = router;
