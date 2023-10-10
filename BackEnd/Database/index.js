@@ -1,3 +1,4 @@
+
 const { Sequelize, DataTypes } = require("sequelize");
 const config = require("./config/config.json");
 
@@ -24,3 +25,4 @@ const connect = async () => {
 
 connect();
 module.exports = db;
+
