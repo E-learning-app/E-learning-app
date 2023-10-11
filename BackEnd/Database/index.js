@@ -8,7 +8,10 @@ const sequelize = new Sequelize(config.database, config.user, config.password, {
 const db = {};
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
-db.user = require("./models/user")(sequelize, DataTypes);
+
+
+
+db.User =require("./models/user")(sequelize, DataTypes);;
 db.Class = require("./models/class")(sequelize, DataTypes);
 db.Course = require("./models/course")(sequelize, DataTypes);
 
@@ -20,8 +23,7 @@ const connect = async () => {
     console.error("Unable to connect to the database:", error);
   }
 };
-
-//db.sequelize.sync({ force: true });
+// db.sequelize.sync({ force: true });
 
 connect();
 module.exports = db;
