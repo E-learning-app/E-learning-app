@@ -1,7 +1,7 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const config = require("./config/config.json");
 
-const sequelize = new Sequelize(config.database, config.Username, config.password, {
+const sequelize = new Sequelize(config.database, config.user, config.password, {
   host: config.host,
   dialect: "mysql",
 });
@@ -23,8 +23,7 @@ const connect = async () => {
     console.error("Unable to connect to the database:", error);
   }
 };
-
-//db.sequelize.sync({ force: true });
+// db.sequelize.sync({ force: true });
 
 connect();
 module.exports = db;
