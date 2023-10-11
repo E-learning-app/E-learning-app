@@ -1,10 +1,10 @@
-import React from 'react'
-import { Link } from "react-router-dom";
+import React from 'react';
 
 function Home() {
   return (
-<div>home</div>
-  )
+    <div style={{backgroundColor: '#D3D3D3' ,flex: 1, overflowY: "auto" }}>HOMEbehbehbhjebhjebhebehbehjjendjnejnbdebdbeb
+    </div>
+  );
 }
 
 export default Home;
