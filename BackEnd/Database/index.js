@@ -8,8 +8,37 @@ const sequelize = new Sequelize(config.database, config.user, config.password, {
 const db = {};
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
-db.user = require("./models/user")(sequelize, DataTypes);
+
+db.User = require("./models/user")(sequelize, DataTypes);
 db.Class = require("./models/class")(sequelize, DataTypes);
+db.Course = require("./models/course")(sequelize, DataTypes);
+
+db.User.belongsToMany(db.Class, {
+  through: "StudentClasses",
+  foreignKey: "studentId",
+});
+db.Class.belongsToMany(db.User, {
+  through: "StudentClasses",
+  foreignKey: "classId",
+});
+
+db.Class.belongsToMany(db.Course, {
+  through: "ClassCourses",
+  foreignKey: "classId",
+});
+db.Course.belongsToMany(db.Class, {
+  through: "ClassCourses",
+  foreignKey: "courseId",
+});
+
+db.User.belongsToMany(db.Course, {
+  through: "StudentCourses",
+  foreignKey: "studentId",
+});
+db.Course.belongsToMany(db.User, {
+  through: "StudentCourses",
+  foreignKey: "courseId",
+});
 
 const connect = async () => {
   try {
