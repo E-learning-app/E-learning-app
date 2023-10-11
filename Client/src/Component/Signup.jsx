@@ -94,15 +94,3 @@ const handleSubmit =(e)=>{
 }
 
 export default Signup;
-      {/* <label htmlFor="firstname">Firstname:</label>
-      <input type="text" name="firstname" placeholder="enter your firstname" />  
-      <label htmlFor="lastname">Lastname:</label>
-      <input type="text" name="lastname" placeholder="enter your lastname" />  
-      <label htmlFor="email">Username:</label>
-      <input type="text" name="username" placeholder="enter your username" />  
-      <label htmlFor="email">Email:</label>
-      <input type="email" name="email" placeholder="enter your email" />
-      <label htmlFor="password">Password:</label>
-      <input type="password" name="password" placeholder="enter your password"/>
-      <button type="submit"><Link to="/">Login</Link></button>
-    </div> */}

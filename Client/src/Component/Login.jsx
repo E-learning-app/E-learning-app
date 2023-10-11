@@ -87,19 +87,5 @@ const handleSubmit = (e) => {
   );
 }
 
-//     <div>
-
-// <div class="form-outline mb-4">
-// <label class="form-label" for="loginName">Email:</label>
-// <input class="form-label" for="loginName" placeholder='enter your email'/>
-// </div>
-// <div>
-// <label class="form-label" for="loginPassword">Password:</label>
-// <input type="password" id="loginPassword" placeholder='enter your password'/>
-// </div>
-// <button type="submit"><Link to="/home">Login</Link></button>
-// <p>dont have an account yet ?{" "}<a href="/signup">signup</a></p>
-//     </div>
-
 
 export default Login
