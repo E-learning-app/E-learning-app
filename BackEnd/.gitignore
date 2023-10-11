@@ -1,10 +1,4 @@
 node_modules
 config.json
 package-lock.json
-the mdp of the admin is which his email is "jawher@gmail.com" and the  "password":"root" here is it decription :
-"$2b$10$09oOmHOR/DE3xdUimYtqzuUu0LvYWDuXW1q7mz4nGBEF97l9OIsfm"
-
-accounte admin : 
-email :hichem.sboui@gmail.com 
-password : $2b$10$09oOmHOR/DE3xdUimYtqzuUu0LvYWDuXW1q7mz4nGBEF97l9OIsfm
-password not hashed : admin
+.env
