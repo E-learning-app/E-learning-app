@@ -7,10 +7,11 @@ import {
 import React from "react";
 import Login from "./Component/Login";
 import Signup from "./Component/Signup";
-import Home from "./Component/Home";
+import Home from "./Component/Admin/Home";
 import Navbars from "./Component/Navbar";
-import Sidebars from "./Component/HomePage/Sidebar";
-import Users from "./Component/HomePage/Users";
+import Sidebars from "./Component/Admin/Sidebar";
+import Users from "./Component/Admin/Users";
+import Classes from "./Component/Admin/Classes";
 
 const Layout = () => {
   return (
@@ -33,14 +34,19 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
+    index: 0,
     children: [
       {
-        path: "/home",
+        path: "home",
         element: <Home />,
       },
       {
-        path: "/users",
+        path: "users",
         element: <Users />,
+      },
+      {
+        path: "classes",
+        element: <Classes />,
       },
     ],
   },
@@ -51,7 +57,6 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
-
   },
 ]);
 
