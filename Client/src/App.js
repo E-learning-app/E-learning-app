@@ -22,7 +22,7 @@ const Layout = () => {
         <div>
           <Sidebars />
         </div>
-        <div className='flex flex-grow-1' style={{ minHeight: '100vh' }}>
+        <div className="flex flex-grow-1" style={{ minHeight: "100vh" }}>
           <Outlet />
         </div>
       </div>
