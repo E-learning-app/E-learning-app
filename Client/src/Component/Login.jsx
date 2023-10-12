@@ -24,7 +24,7 @@ const handleSubmit = (e) => {
   
   .then((response)=>{
     localStorage.setItem("token",response.data.token)
-    navigate("/")
+    navigate("/layout")
     
   }).catch((err)=>{
     console.log(err)
