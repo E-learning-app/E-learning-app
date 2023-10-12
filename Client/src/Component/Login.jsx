@@ -20,14 +20,11 @@ const handleSubmit = (e) => {
 
   const token = localStorage.getItem("token");
 
-  axios.post("http://localhost:3000/User/logUser", inputs, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  })
+  axios.post("http://localhost:3000/User/logUser", inputs)
+  
   .then((response)=>{
     localStorage.setItem("token",response.data.token)
-    navigate("/")
+    navigate("/layout")
     
   }).catch((err)=>{
     console.log(err)

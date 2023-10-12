@@ -53,18 +53,21 @@ function Classes() {
 
   const openModal = () => {
     setModalOpen(true);
+    document.body.classList.add("blur-background")
   };
 
   const closeModal = () => {
     setModalOpen(false);
+    document.body.classList.remove("blur-background")
   };
 
   const modalStyles = {
     display: isModalOpen ? "block" : "none",
   };
+  
 
   return (
-    <div>
+    <div style={{backgroundColor: '#D3D3D3' ,flex: 1, overflowY: "auto" }}>
 <button
   onClick={openModal}
   className="block text-white bg-orange-700 hover-bg-orange-800 focus-ring-4 focus-outline-none focus-ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark-bg-orange-600 dark-hover-bg-orange-700 dark-focus-ring-orange-800"
@@ -79,7 +82,8 @@ function Classes() {
   Add classes
 </button>
 
-      <div id="authentication-modal" style={modalStyles} className="fixed flex">
+
+<div id="authentication-modal" style={{ ...modalStyles, position: 'absolute', left: '750px', top: '150px' }} className="fixed flex">
         <div className="w-full max-w-md">
           <div className="bg-white rounded-lg shadow dark-bg-gray-700">
             <button
@@ -107,7 +111,7 @@ function Classes() {
             </button>
 
             <h3 className="mb-4 text-xl font-medium text-gray-900 dark-text-white"></h3>
-            <form className="space-y-6" action="#">
+            <form className="space-y-6" action="#" >
               <div className="md:col-span-1">
                 <div className="px-4 sm:px-0"></div>
               </div>
@@ -158,9 +162,9 @@ function Classes() {
                             >
                               <path
                                 stroke="currentColor"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
                                 d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
                               />
                             </svg>
@@ -178,7 +182,6 @@ function Classes() {
                             id="dropzone-file"
                             type="file"
                             className="hidden"
-                            value={image}
                             onChange={handleImageUpload}
                           />
                         </label>
@@ -216,6 +219,24 @@ function Classes() {
           </div>
         ))}
       </div>
+      <form className="flex items-center" style={{
+    position: "absolute",
+    top: "100px", 
+    right: "570px", 
+  }}>
+            <label htmlFor="search" className="sr-only">
+              Search
+            </label>
+            <div className="relative w-full xl:w-96">
+              <input
+                type="text"
+                id="search"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full px-4 py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-500 dark:focus:border-orange-500"
+                placeholder="Search for a class..."
+                required
+              />
+            </div>
+          </form>
     </div>
   );
 }

@@ -31,14 +31,14 @@ db.Course.belongsToMany(db.Class, {
   foreignKey: "courseId",
 });
 
-db.User.belongsToMany(db.Course, {
-  through: "StudentCourses",
-  foreignKey: "studentId",
-});
-db.Course.belongsToMany(db.User, {
-  through: "StudentCourses",
-  foreignKey: "courseId",
-});
+// db.User.belongsToMany(db.Course, {
+//   through: "StudentCourses",
+//   foreignKey: "studentId",
+// });
+// db.Course.belongsToMany(db.User, {
+//   through: "StudentCourses",
+//   foreignKey: "courseId",
+// });
 
 const connect = async () => {
   try {

@@ -1,4 +1,4 @@
-const { Class } = require("../Database");
+const { Class, User } = require("../Database");
 
 module.exports = {
   getAllClasses: async (req, res) => {
@@ -67,6 +67,26 @@ module.exports = {
       res.status(204).send("class deleted successfully");
     } catch (error) {
       console.log(error);
+      res.status(500).send(error);
+    }
+  },
+  addUserToClass: async (req, res) => {
+    const classId = req.params.classId;
+    const userId = req.params.userId;
+
+    try {
+      const classRoom = await Class.findByPk(classId);
+      if (!classRoom) {
+        return res.status(404).send("Class not found");
+      }
+      const user = await User.findByPk(userId);
+      if (!user) {
+        return res.status(404).send("User not found");
+      }
+      await classRoom.addUser(user);
+      res.status(201).send("User added to the class successfully");
+    } catch (error) {
+      console.error(error);
       res.status(500).send(error);
     }
   },
