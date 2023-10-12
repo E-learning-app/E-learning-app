@@ -4,7 +4,6 @@ import axios from 'axios'
 function Signup() {
   const [inputs,setInputs]=useState({})
   const navigate = useNavigate()
-  console.log(inputs)
 const handleChange =(e)=>{
   e.preventDefault()
   const name = e.target.name;
