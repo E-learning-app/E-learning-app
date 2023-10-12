@@ -4,10 +4,18 @@ module.exports = {
   getAllCoursesFromClass: async (req, res) => {
     const classId = req.params.classId;
     try {
-      const classWithCourses = await Class.findByPk(classId, {
-        include: Course,
+      const classInstance = await Class.findByPk(classId, {
+        include: {
+          model: Course,
+          through: {
+            attributes: [],
+          },
+        },
       });
-      res.json(classWithCourses.Courses);
+      if (!classInstance) {
+        return res.status(404).json("Class not found");
+      }
+      res.json(classInstance.courses);
     } catch (error) {
       console.error(error);
       res.status(500).json("Internal server error");
@@ -58,13 +66,13 @@ module.exports = {
     try {
       const course = await Course.findByPk(courseId);
       if (!course) {
-        return res.status(404).json({ error: "Course not found" });
+        return res.status(404).json("Course not found");
       }
       await course.destroy();
-      res.json({ message: "Course deleted successfully" });
+      res.json("Course deleted successfully");
     } catch (error) {
       console.error(error);
-      res.status(500).json({ error: "Internal server error" });
+      res.status(500).json("Internal server error");
     }
   },
 };
