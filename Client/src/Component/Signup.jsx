@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios'
 function Signup() {
   const [inputs,setInputs]=useState({})
+  const navigate = useNavigate()
   console.log(inputs)
 const handleChange =(e)=>{
   e.preventDefault()
@@ -10,7 +11,7 @@ const handleChange =(e)=>{
   const value = e.target.value;
   setInputs(values => ({...values, [name]: value}))
 
-}
+} 
 
 const handleSubmit =(e)=>{
   e.preventDefault()
@@ -18,6 +19,7 @@ const handleSubmit =(e)=>{
   .then((response)=>{
     console.log("user added successfully")
     console.log(response.data)
+    navigate("/login")
   }).catch((err)=>{
     console.log(err)
   })
@@ -73,11 +75,11 @@ const handleSubmit =(e)=>{
                         </label>
                       </div>
                       <div className="pt-1 mb-4">
-                      <Link to="/"><button className="btn btn-dark btn-lg btn-block" type="submit" style={{ backgroundColor: '#ff6219' }} onClick={handleSubmit} > Signup
-                        </button></Link>
+                      <button className="btn btn-dark btn-lg btn-block" type="submit" style={{ backgroundColor: '#ff6219' }} onClick={handleSubmit} > Signup
+                        </button>
                       </div>
                       <p className="mb-5 pb-lg-2" style={{ color: '#393f81' }}>
-                      Already have a account? <Link to="/"><span href="/" style={{ color: '#ff6219' }} >Login here</span></Link>
+                      Already have a account? <Link to="/login"><span style={{ color: '#ff6219' }} >Login here</span></Link>
                       </p>
 
                     </form>
