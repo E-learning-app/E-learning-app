@@ -20,9 +20,9 @@ function Sidebars() {
       >
         <Sidebar.Items style={{ backgroundColor: "white" }}>
           <Sidebar.ItemGroup style={{ backgroundColor: "white" }}>
-            <Sidebar.Item href="/home" icon={HiHome}>
+           <Link to='/home' ><Sidebar.Item icon={HiHome}>
               <p style={{ color: "black", fontSize: "20px" }}>Home</p>
-            </Sidebar.Item>
+            </Sidebar.Item></Link>
             <Sidebar.Item  icon={HiUsers}>
               <Link to="/users"><span>Users</span></Link>
             </Sidebar.Item>
