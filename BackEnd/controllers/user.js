@@ -2,6 +2,7 @@ const db = require("../Database/index");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
+
 module.exports = {
   getAllUsers: async (req, res) => {
     try {
@@ -59,26 +60,21 @@ module.exports = {
   },
 
   getAllClasses: async (req, res) => {
-    const userId = req.user.id;
+    const userId = req.params.userId;
     try {
-      const user = await db.User.findByPk(userId, {
-        include: [
-          {
-            model: db.Class,
-            through: {
-              attributes: [],
-            },
+      const { classes } = await db.User.findByPk(userId, {
+        include: {
+          model: db.Class,
+          through: {
+            attributes: [],
           },
-        ],
+        },
       });
-      if (!user) {
-        return res.status(404).json({ error: "User not found" });
-      }
-      const classes = user.Classes;
+      //   console.log(classes);
       res.status(200).json(classes);
     } catch (err) {
       console.error(err);
-      res.status(500).json({ error: "Internal Server Error" });
+      res.status(500).send(err);
     }
   },
 };

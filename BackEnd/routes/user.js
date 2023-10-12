@@ -24,6 +24,6 @@ router.get(
   }
 );
 
-router.get("/classess", getAllClasses);
+router.get("/classes/:userId", getAllClasses);
 
 module.exports = router;
