@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 function Login() {
 
   const [inputs,setInputs]=useState({})
+  const navigate = useNavigate()
   console.log(inputs)
 const handleChange =(e)=>{
   e.preventDefault()
   const name = e.target.name;
   const value = e.target.value;
+ 
   setInputs(values => ({...values, [name]: value}))
 
 }
@@ -18,16 +20,15 @@ const handleSubmit = (e) => {
 
   const token = localStorage.getItem("token");
 
-  axios.post("http://localhost:3000/User/logUser", inputs, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  })
+  axios.post("http://localhost:3000/User/logUser", inputs)
+  
   .then((response)=>{
     localStorage.setItem("token",response.data.token)
+    navigate("/")
     
   }).catch((err)=>{
     console.log(err)
+    alert('invalid')
   })
 }
   return (
@@ -68,9 +69,9 @@ const handleSubmit = (e) => {
                         </label>
                       </div>
                       <div className="pt-1 mb-4">
-                        <Link to='/home'><button className="btn btn-dark btn-lg btn-block" type="button" onClick={handleSubmit} style={{ backgroundColor: '#ff6219' }}>
+                       <button className="btn btn-dark btn-lg btn-block" type="button" onClick={handleSubmit} style={{ backgroundColor: '#ff6219' }}>
                           Login
-                        </button></Link> 
+                        </button>
                       </div>
                       <p className="mb-5 pb-lg-2" style={{ color: '#393f81' }}>
                         Don't have an account? <Link to="/signup"><span style={{ color: '#ff6219' }} >Register here</span></Link>

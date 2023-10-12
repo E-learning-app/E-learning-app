@@ -1,9 +1,12 @@
 const express = require("express");
 const router = express.Router();
 
-const { getAllCourses, deleteOneCourse } = require("../controllers/course");
+const {
+  getAllCoursesFromClass,
+  deleteCourseFromClass,
+} = require("../controllers/course");
 
-router.get("/", getAllCourses);
-router.delete("/deleteCourse/:id", deleteOneCourse);
+router.get("/:classId", getAllCoursesFromClass);
+router.delete("/:classId", deleteCourseFromClass);
 
 module.exports = router;

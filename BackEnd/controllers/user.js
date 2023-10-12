@@ -1,4 +1,4 @@
-const db = require("../Database/index");
+const { User, Class } = require("../Database/index");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
@@ -6,7 +6,7 @@ require("dotenv").config();
 module.exports = {
   getAllUsers: async (req, res) => {
     try {
-      const allUsers = await db.User.findAll();
+      const allUsers = await User.findAll();
       res.status(200).json(allUsers);
     } catch (err) {
       console.log(err);
@@ -18,7 +18,7 @@ module.exports = {
     const { firstName, lastName, email, password } = req.body;
     try {
       const hash = await bcrypt.hash(password, 10);
-      const resp = await db.User.create({
+      const resp = await User.create({
         firstName: firstName,
         lastName: lastName,
         email: email,
@@ -34,7 +34,7 @@ module.exports = {
 
   logUser: async (req, res) => {
     const { email, password } = req.body;
-    const user = await db.User.findOne({ where: { email } });
+    const user = await User.findOne({ where: { email } });
 
     if (user) {
       // console.log(password,user.password);
@@ -62,9 +62,9 @@ module.exports = {
   getAllClasses: async (req, res) => {
     const userId = req.params.userId;
     try {
-      const { classes } = await db.User.findByPk(userId, {
+      const { classes } = await User.findByPk(userId, {
         include: {
-          model: db.Class,
+          model: Class,
           through: {
             attributes: [],
           },

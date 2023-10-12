@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios'
 function Signup() {
   const [inputs, setInputs] = useState({})
-  console.log(inputs)
+  const navigate = useNavigate()
   const handleChange = (e) => {
     e.preventDefault()
     const name = e.target.name;
@@ -18,6 +18,7 @@ function Signup() {
       .then((response) => {
         console.log("user added successfully")
         console.log(response.data)
+        navigate("/login")
       }).catch((err) => {
         console.log(err)
       })
@@ -73,8 +74,8 @@ function Signup() {
                         </label>
                       </div>
                       <div className="pt-1 mb-4">
-                        <Link to="/login"><button className="btn btn-dark btn-lg btn-block" type="submit" style={{ backgroundColor: '#ff6219' }} onClick={handleSubmit} > Signup
-                        </button></Link>
+                        <button className="btn btn-dark btn-lg btn-block" type="submit" style={{ backgroundColor: '#ff6219' }} onClick={handleSubmit} > Signup
+                        </button>
                       </div>
                       <p className="mb-5 pb-lg-2" style={{ color: '#393f81' }}>
                         Already have a account? <Link to="/login"><span style={{ color: '#ff6219' }} >Login here</span></Link>
