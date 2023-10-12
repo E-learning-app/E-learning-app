@@ -10,7 +10,7 @@ const {
   addUserToClass,
 } = require("../controllers/class");
 
-router.get("/classes/:userId", getAllClasses);
+router.get("/:userId", getAllClasses);
 router.get("/:classId", getOneClass);
 router.post("/", addClass);
 router.post("/:classId/:userId", addUserToClass);
