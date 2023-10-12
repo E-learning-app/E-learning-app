@@ -26,7 +26,7 @@ function Classes() {
   };
   useEffect(() => {
    
-    axios.get("http://localhost:3000/classess")
+    axios.get("http://localhost:3000/classess/1")
       .then((response) => {
         setClassList(response.data);
       })
@@ -67,7 +67,7 @@ function Classes() {
   
 
   return (
-    <div style={{backgroundColor: '#D3D3D3' ,flex: 1, overflowY: "auto" }}>
+    <div className='px-3 py-4 flex'style={{backgroundColor: '#D3D3D3' ,flex: 1, overflowY: "auto" }} >
 <button
   onClick={openModal}
   className="block text-white bg-orange-700 hover-bg-orange-800 focus-ring-4 focus-outline-none focus-ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark-bg-orange-600 dark-hover-bg-orange-700 dark-focus-ring-orange-800"
@@ -111,7 +111,7 @@ function Classes() {
             </button>
 
             <h3 className="mb-4 text-xl font-medium text-gray-900 dark-text-white"></h3>
-            <form className="space-y-6" action="#" >
+            
               <div className="md:col-span-1">
                 <div className="px-4 sm:px-0"></div>
               </div>
@@ -198,7 +198,6 @@ function Classes() {
                   </div>
                 </form>
               </div>
-            </form>
           </div>
         </div>
       </div>
@@ -208,16 +207,30 @@ function Classes() {
     top: "210px", 
     right: "1095px", 
   }}>
+
+<div className="class-list" style={{
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent: "space-between",
+      alignItems: "center",
+        position: "absolute",
+        top: "210px",
+        right: "50px",
+      }}>
+
         {classList.map((classInfo, index) => (
-          <div key={index} className="class-info">
+          <div key={index} className="class-info" style={{backgroundColor:'red',position: 'relative', left: '150px', top: '1px'}}>
             <img
               src={classInfo.image}
               alt={classInfo.name}
               className="class-image"
+              style={{height:"150px"}}
             />
             <p className="class-name">{classInfo.name}</p>
           </div>
         ))}
+
+</div>
       </div>
       <form className="flex items-center" style={{
     position: "absolute",
