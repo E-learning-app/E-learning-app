@@ -5,6 +5,9 @@ const db = require("./Database/index");
 const classRouter = require("./routes/class");
 const UserRouter =require("./routes/user")
 const courseRouter = require("./routes/course");
+const testAuthentication = require("./routes/testAuthentication")
+require("dotenv").config()
+
 
 
 
