@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { Dropdown, Navbar, Avatar } from "flowbite-react";
 import { Link } from "react-router-dom";
-import { userContext } from "../App";
-function Navbars() {
+import { userContext } from "../../App";
+function Usernavbar() {
   const { user } = useContext(userContext); 
   const navbarStyle = {
     backgroundColor: "#F9FAFB",
@@ -56,7 +56,7 @@ function Navbars() {
               className="flex items-center"
               style={{ color: "black", fontSize: "24px" }}
             >
-              {user.role} dashboard
+
             </span>
         </Navbar.Collapse>
       </Navbar>  
@@ -64,4 +64,4 @@ function Navbars() {
   );
 }
 
-export default Navbars;
+export default Usernavbar;
