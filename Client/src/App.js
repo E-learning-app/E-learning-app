@@ -16,24 +16,24 @@ import Classes from "./Component/Admin/Classes";
 const Layout = () => {
   return (
     <div>
-    <div >
-      <Navbars />
-      <div className="flex" style={{ minHeight: '100vh' }}>
-        <div>
-          <Sidebars />
-        </div>
-        <div className="flex flex-grow-1" style={{ minHeight: "100vh" }}>
-          <Outlet />
+      <div>
+        <Navbars />
+        <div className="flex" style={{ minHeight: "100vh" }}>
+          <div>
+            <Sidebars />
+          </div>
+          <div className="flex flex-grow-1" style={{ minHeight: "100vh" }}>
+            <Outlet />
+          </div>
         </div>
       </div>
-    </div>
     </div>
   );
 };
 
 const router = createBrowserRouter([
   {
-    path: "/", 
+    path: "/",
     element: <Login />,
   },
   {
