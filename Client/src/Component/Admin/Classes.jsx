@@ -36,7 +36,6 @@ function Classes() {
     }
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -73,23 +72,22 @@ function Classes() {
 
 
   return (
-    <div style={{ backgroundColor: '#D3D3D3', flex: 1, overflowY: "auto" }}>
-      <button
-        onClick={openModal}
-        className="block text-white bg-orange-700 hover-bg-orange-800 focus-ring-4 focus-outline-none focus-ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark-bg-orange-600 dark-hover-bg-orange-700 dark-focus-ring-orange-800"
-        type="button"
-        style={{
-          height: "150px",
-          position: "absolute",
-          top: "210px",
-          right: "1200px",
-        }}
-      >
-        Add classes
-      </button>
 
-
-      <div id="authentication-modal" style={{ ...modalStyles, position: 'absolute', left: '750px', top: '150px' }} className="fixed flex">
+    <div className='px-3 py-4 flex'style={{backgroundColor: '#D3D3D3' ,flex: 1, overflowY: "auto" }} >
+<button
+  onClick={openModal}
+  className="block text-white bg-orange-700 hover-bg-orange-800 focus-ring-4 focus-outline-none focus-ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark-bg-orange-600 dark-hover-bg-orange-700 dark-focus-ring-orange-800"
+  type="button"
+  style={{
+    height:"150px",
+    position: "absolute",
+    top: "210px", 
+    right: "1200px", 
+  }}
+>
+  Add classes
+</button>
+<div id="authentication-modal" style={{ ...modalStyles, position: 'absolute', left: '750px', top: '150px' }} className="fixed flex">
         <div className="w-full max-w-md">
           <div className="bg-white rounded-lg shadow dark-bg-gray-700">
             <button
@@ -116,15 +114,38 @@ function Classes() {
               <span className="sr-only">Close modal</span>
             </button>
             <h3 className="mb-4 text-xl font-medium text-gray-900 dark-text-white"></h3>
-            <div className="md:col-span-1">
-              <div className="px-4 sm:px-0"></div>
-            </div>
-            <div className="mt-5 md:mt-0 md:col-span-2">
-              <form onSubmit={handleSubmit}>
-                <div className="shadow sm:rounded-md sm:overflow-hidden">
-                  <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
-                    <div className="grid grid-cols-3 gap-6">
+
                       <div className="col-span-3 sm:col-span-2">
+            
+              <div className="md:col-span-1">
+                <div className="px-4 sm:px-0"></div>
+              </div>
+              <div className="mt-5 md:mt-0 md:col-span-2">
+                <form onSubmit={handleSubmit}>
+                  <div className="shadow sm:rounded-md sm:overflow-hidden">
+                    <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
+                      <div className="grid grid-cols-3 gap-6">
+                        <div className="col-span-3 sm:col-span-2">
+                          <label
+                            htmlFor="name"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Add class name
+                          </label>
+                          <div className="mt-1 flex rounded-md shadow-sm">
+                            <input
+                              type="text"
+                              name="name"
+                              id="name"
+                              className="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
+                              placeholder=" Class name"
+                              value={name}
+                              onChange={(e) => setName(e.target.value)}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-center w-full">
                         <label
                           htmlFor="name"
                           className="block text-sm font-medium text-gray-700"
@@ -191,37 +212,40 @@ function Classes() {
                       </label>
                     </div>
                   </div>
-                  <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                    <button
-                      type="submit"
-                      className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    >
-                      Add
-                    </button>
-                  </div>
-                </div>
-              </form>
-            </div>
-
+                </form>
+              </div>
           </div>
         </div>
       </div>
-      <div className="class-list" style={{
-        height: "150px",
+      <div className="class-list"   style={{
+    height:"150px",
+    position: "absolute",
+    top: "210px", 
+    right: "1095px", 
+  }}>
+
+<div className="class-list" style={{
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent: "space-between",
+      alignItems: "center",
         position: "absolute",
         top: "210px",
-        right: "1095px",
+        right: "50px",
       }}>
         {classList.map((classInfo, index) => (
-          <div key={index} className="class-info">
+          <div key={index} className="class-info" style={{backgroundColor:'red',position: 'relative', left: '150px', top: '1px'}}>
             <img
               src={classInfo.image}
               alt={classInfo.name}
               className="class-image"
+              style={{height:"150px"}}
             />
             <p className="class-name">{classInfo.name}</p>
           </div>
         ))}
+
+</div>
       </div>
       <form className="flex items-center" style={{
         position: "absolute",
