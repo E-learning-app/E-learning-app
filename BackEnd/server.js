@@ -10,8 +10,8 @@ require("dotenv").config();
 
 app.use(cors());
 app.use(express.json());
+app.use("/files", express.static(__dirname + "/files"));
 app.use(express.urlencoded({ extended: true }));
-app.use("files", express.static("./files"));
 
 app.use("/classess", classRouter);
 app.use("/User", UserRouter);
