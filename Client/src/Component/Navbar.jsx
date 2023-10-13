@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Dropdown, Navbar, Avatar } from "flowbite-react";
 import { Link } from "react-router-dom";
-
-
+import { userContext } from "../App";
 function Navbars() {
+  const { user } = useContext(userContext); 
+  const navbarStyle = {
+    backgroundColor: "#F9FAFB",
+  };
   return (
-    <div style={{backgroundColor: "white" }}>
-         <Navbar fluid rounded>
+    <div >
+         <Navbar  fluid rounded style={navbarStyle}>
         <Navbar.Brand>
-          <Link to="/home">
+          <Link to="home">
             <i
               className="fas fa-book-open fa-2x me-3"
               style={{ color: "#ff6219" }}
@@ -35,34 +38,26 @@ function Navbars() {
             }
           >
             <Dropdown.Header>
-              <span className="block text-sm">El Hesh</span>
+              <span className="block text-sm">{user.firstName}</span>
               <span className="block truncate text-sm font-medium">
-                elhesh@gmail.com
+                {user.email}
               </span>
             </Dropdown.Header>
             <p>Settings</p>
             <Dropdown.Divider />
-            <Link to="/login">
+            <Link to="/">
               <span>Sign out</span>
             </Link>
           </Dropdown>
           <Navbar.Toggle />
         </div>
         <Navbar.Collapse>
-          <form className="flex items-center">
-            <label htmlFor="search" className="sr-only">
-              Search
-            </label>
-            <div className="relative w-full xl:w-96">
-              <input
-                type="text"
-                id="search"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full px-4 py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-500 dark:focus:border-orange-500"
-                placeholder="Search for a class..."
-                required
-              />
-            </div>
-          </form>
+        <span
+              className="flex items-center"
+              style={{ color: "black", fontSize: "24px" }}
+            >
+              {user.role} dashboard
+            </span>
         </Navbar.Collapse>
       </Navbar>  
       </div>

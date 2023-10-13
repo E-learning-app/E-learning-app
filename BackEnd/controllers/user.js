@@ -1,32 +1,37 @@
 const db = require("../Database/index");
-const bcrypt =require("bcrypt")
-const jwt = require("jsonwebtoken")
-require('dotenv').config();
-module.exports ={
-    getAllUsers :async(req,res)=>{
-     
-        try{
-            const allUsers = await db.User.findAll();
-            res.status(200).json(allUsers)
-        }catch(err){
-            console.log(err)
-            res.status(500).send(err)
-        }
-    },
-    
-    addUser :async (req,res)=>{
-        const {firstName , lastName , email , password}= req.body
-        try{
-            const hash =await bcrypt.hash(password,10)
-            const resp =await db.User.create({firstName:firstName , lastName:lastName ,email:email,password:hash ,role:"user"})
-            res.status(200).json(resp)
-            // resp.send(hash)
-        }catch(err){
-            res.status(500).send(err)
-        }
-    }, 
+const { User, Class } = require("../Database/index");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
+module.exports = {
+  getAllUsers: async (req, res) => {
+    try {
+      const allUsers = await User.findAll();
+      res.status(200).json(allUsers);
+    } catch (err) {
+      console.log(err);
+      res.status(500).send(err);
+    }
+  },
 
+  addUser: async (req, res) => {
+    const { firstName, lastName, email, password } = req.body;
+    try {
+      const hash = await bcrypt.hash(password, 10);
+      const resp = await User.create({
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        password: hash,
+        role: "user",
+      });
+      res.status(200).json(resp);
+      // resp.send(hash)
+    } catch (err) {
+      res.status(500).send(err);
+    }
+  },
 
     logUser : async(req,res)=>{
         const {email , password}=req.body
@@ -44,7 +49,7 @@ module.exports ={
                     firstName: user.firstName,
                     role: user.role,
                   }, process.env.jwt_SECRET);
-                res.json({message:"Welcome Back",token:token})
+                res.json({message:"Welcome Back",token:token ,user:{"id":user.id,"email":user.email,"firstName":user.firstName,"role":user.role,}})
             }else {
                 res.status(400).json({ error : "Password Incorrect" });
             }
@@ -54,6 +59,36 @@ module.exports ={
         }
     },
 
+    getUser : async(req,res)=>{
+        
+        console.log(req.userId)
+        try{
+            const User =await db.User.findByPk(req.userId)
+            res.status(200).json({message : User})
+        }catch(err){
+
+            res.status(500).send(err)
+        }
+    },
 
 
-}
+  getAllClasses: async (req, res) => {
+    // const userId = req.params.userId;
+    console.log("it's" +req.userId)
+    try {
+      const { classes } = await User.findByPk(req.userId, {
+        include: {
+          model: Class,
+          through: {
+            attributes: [],
+          },
+        },
+      });
+        // console.log(classes);
+      res.status(200).json(classes);
+    } catch (err) {
+      console.error(err);
+      res.status(500).send(err);
+    }
+  },
+};
