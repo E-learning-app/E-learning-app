@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
-const db = require("../Database/index");
+const db = require("../controllers/user");
 // const User = db.User;
 
 const verifyToken = (req, res, next) => {
@@ -15,9 +15,14 @@ const verifyToken = (req, res, next) => {
       return res.status(401).send({ message: "Unauthorized!" });
     }
     req.userId = decoded.id;
-    next();
+    
+    
+
   });
 };
+
+
+
 
 const authJwt = {
   verifyToken: verifyToken,

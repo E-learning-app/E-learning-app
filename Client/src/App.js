@@ -4,7 +4,8 @@ import {
   Route,
   Outlet,
 } from "react-router-dom";
-import React from "react";
+
+import React, { createContext, useState } from "react";
 import Login from "./Component/Login";
 import Signup from "./Component/Signup";
 import Home from "./Component/Admin/Home";
@@ -13,11 +14,12 @@ import Sidebars from "./Component/Admin/Sidebar";
 import Users from "./Component/Admin/Users";
 import Classes from "./Component/Admin/Classes";
 
+export const userContext =createContext()
 const Layout = () => {
   return (
+    <div>
     <div >
       <Navbars />
-
       <div className="flex" style={{ minHeight: '100vh' }}>
         <div>
           <Sidebars />
@@ -27,45 +29,51 @@ const Layout = () => {
         </div>
       </div>
     </div>
+    </div>
   );
 };
 
+
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <Layout />,
-    index: 0,
-    children: [
-      {
-        path: "home",
-        element: <Home />,
-      },
-      {
-        path: "users",
-        element: <Users />,
-      },
-      {
-        path: "classes",
-        element: <Classes />,
-      },
-    ],
+    path: "/", 
+    element: <Login />,
   },
   {
     path: "/signup",
     element: <Signup />,
   },
   {
-    path: "/login",
-    element: <Login />,
+    path: "/layout",  
+    element: <Layout />,
+    children: [
+      {
+        path: "admin/home",
+        element: <Home />,
+      },
+      {
+        path: "admin/users",
+        element: <Users />,
+      },
+      {
+        path: "admin/classes",
+        element: <Classes />,
+      },
+    ],
   },
 ]);
 
 function App() {
+  const [user, setUser] = useState("")
+  console.log("i'm cosole logged from app ",user)
   return (
     <div>
+      <userContext.Provider value={{user,setUser}} >
       <div>
-        <RouterProvider router={router} />
+        
+         <RouterProvider router={router} />
       </div>
+      </userContext.Provider >
     </div>
   );
 }

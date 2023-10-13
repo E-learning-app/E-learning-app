@@ -178,7 +178,6 @@ function Classes() {
                             id="dropzone-file"
                             type="file"
                             className="hidden"
-                            value={image}
                             onChange={handleImageUpload}
                           />
                         </label>
