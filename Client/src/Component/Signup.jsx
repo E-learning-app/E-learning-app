@@ -18,14 +18,14 @@ function Signup() {
       .then((response) => {
         console.log("user added successfully")
         console.log(response.data)
-        navigate("/login")
+        navigate("/")
       }).catch((err) => {
         console.log(err)
       })
   }
 
   return (
-    <section className="vh-100" style={{ backgroundColor: '#D3D3D3' }}>
+    <section className="vh-100" style={{ background: `url("https://www.danielmcclure.com/wp-content/uploads/Jordan1-large-620x380.jpg")` }}>
       <div className="container py-5 h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col col-xl-10">
@@ -78,7 +78,7 @@ function Signup() {
                         </button>
                       </div>
                       <p className="mb-5 pb-lg-2" style={{ color: '#393f81' }}>
-                        Already have a account? <Link to="/login"><span style={{ color: '#ff6219' }} >Login here</span></Link>
+                        Already have a account? <Link to="/"><span style={{ color: '#ff6219' }} >Login here</span></Link>
                       </p>
 
                     </form>
