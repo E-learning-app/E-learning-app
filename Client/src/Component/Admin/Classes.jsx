@@ -36,7 +36,6 @@ function Classes() {
     }
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -59,12 +58,12 @@ function Classes() {
 
   const openModal = () => {
     setModalOpen(true);
-    document.body.classList.add("blur-background")
+
   };
 
   const closeModal = () => {
     setModalOpen(false);
-    document.body.classList.remove("blur-background")
+
   };
 
   const modalStyles = {
@@ -73,29 +72,28 @@ function Classes() {
 
 
   return (
-    <div style={{ backgroundColor: '#D3D3D3', flex: 1, overflowY: "auto" }}>
-      <button
-        onClick={openModal}
-        className="block text-white bg-orange-700 hover-bg-orange-800 focus-ring-4 focus-outline-none focus-ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark-bg-orange-600 dark-hover-bg-orange-700 dark-focus-ring-orange-800"
-        type="button"
-        style={{
-          height: "150px",
-          position: "absolute",
-          top: "210px",
-          right: "1200px",
-        }}
-      >
-        Add classes
-      </button>
+    <div className="px-3 py-4 flex" style={{ backgroundColor: "#D3D3D3", flex: 1, overflowY: "auto" }}>
+<button
+  onClick={openModal}
+  className="text-white bg-gradient-to-r from-orange-500 via-orange-600 to-orange-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-orange-300 dark:focus:ring-orange-800 shadow-lg shadow-orange-500/50 dark:shadow-lg dark:shadow-orange-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+  type="button"
+  style={{
+    height: "150px",
+    position: "relative",
+    top: "20%",
+    left: "10%",
+    transform: "translate(-50%, -50%)",
+  }}
+>
+  Add classes
+</button>
 
-
-      <div id="authentication-modal" style={{ ...modalStyles, position: 'absolute', left: '750px', top: '150px' }} className="fixed flex">
         <div className="w-full max-w-md">
           <div className="bg-white rounded-lg shadow dark-bg-gray-700">
             <button
               type="button"
               onClick={closeModal}
-              className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover-bg-gray-200 hover-text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark-hover-bg-gray-600 dark-hover-text-white"
+              className="absolute top-18 right-1.5 text-gray-400 bg-transparent hover-bg-gray-200 hover-text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark-hover-bg-gray-600 dark-hover-text-white"
               data-modal-hide="authentication-modal"
             >
               <svg
@@ -116,15 +114,38 @@ function Classes() {
               <span className="sr-only">Close modal</span>
             </button>
             <h3 className="mb-4 text-xl font-medium text-gray-900 dark-text-white"></h3>
-            <div className="md:col-span-1">
-              <div className="px-4 sm:px-0"></div>
-            </div>
-            <div className="mt-5 md:mt-0 md:col-span-2">
-              <form onSubmit={handleSubmit}>
-                <div className="shadow sm:rounded-md sm:overflow-hidden">
-                  <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
-                    <div className="grid grid-cols-3 gap-6">
+
                       <div className="col-span-3 sm:col-span-2">
+            
+              <div className="md:col-span-1">
+                <div className="px-4 sm:px-0"></div>
+              </div>
+              <div className="mt-5 md:mt-0 md:col-span-2">
+                <form onSubmit={handleSubmit}>
+                  <div className="shadow sm:rounded-md sm:overflow-hidden">
+                    <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
+                      <div className="grid grid-cols-3 gap-6">
+                        <div className="col-span-3 sm:col-span-2">
+                          <label
+                            htmlFor="name"
+                            className="block text-sm font-medium text-gray-700"
+                          >
+                            Add class name
+                          </label>
+                          <div className="mt-1 flex rounded-md shadow-sm">
+                            <input
+                              type="text"
+                              name="name"
+                              id="name"
+                              className="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
+                              placeholder=" Class name"
+                              value={name}
+                              onChange={(e) => setName(e.target.value)}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex items-center justify-center w-full">
                         <label
                           htmlFor="name"
                           className="block text-sm font-medium text-gray-700"
@@ -191,43 +212,55 @@ function Classes() {
                       </label>
                     </div>
                   </div>
-                  <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                    <button
-                      type="submit"
-                      className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    >
-                      Add
-                    </button>
-                  </div>
-                </div>
-              </form>
-            </div>
-
+                </form>
+              </div>
           </div>
         </div>
       </div>
-      <div className="class-list" style={{
-        height: "150px",
-        position: "absolute",
-        top: "210px",
-        right: "1095px",
-      }}>
-        {classList.map((classInfo, index) => (
-          <div key={index} className="class-info">
-            <img
-              src={classInfo.image}
-              alt={classInfo.name}
-              className="class-image"
-            />
-            <p className="class-name">{classInfo.name}</p>
-          </div>
-        ))}
+      <div className="class-list"   style={{
+    height:"150px",
+    position: "relative",
+    top: "20%",
+    left: "10%",
+    transform: "translate(-50%, -50%)",
+
+  }}>
+        
+
+
       </div>
-      <form className="flex items-center" style={{
-        position: "absolute",
-        top: "100px",
-        right: "570px",
-      }}>
+
+      <div className="class-list">
+        <div
+          className="class-list"
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "space-between",
+            alignItems: "center",
+            position: "absolute",
+            top: "210px",
+            right: "50px",
+          }}
+        >
+          {classList.map((classInfo, index) => (
+            <div key={index} className="class-info" style={{ backgroundColor: "red", position: "relative", left: "150px", top: "1px" }}>
+              <img src={classInfo.image} alt={classInfo.name} className="class-image" style={{ height: "150px" }} />
+              <p className="class-name">{classInfo.name}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      <form
+        className="flex items-center"
+        style={{
+          height: "150px",
+          position: "relative",
+          top: "1%",
+          left: "34%",
+          transform: "translate(-50%, -50%)",
+        }}
+      >
         <label htmlFor="search" className="sr-only">
           Search
         </label>
@@ -242,7 +275,7 @@ function Classes() {
         </div>
       </form>
     </div>
-  );
+  )
 }
 
-export default Classes;
+export default Classes

@@ -1,37 +1,37 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 const AddCourse = () => {
     const [title, setTitle] = useState("");
     const [file, setFile] = useState("");
-    const [allImage, setAllImage] = useState(null);
-    const [pdfFile, setPdfFile] = useState(null);
+    // const [allImage, setAllImage] = useState(null);
+    // const [pdfFile, setPdfFile] = useState(null);
 
-    const handleSubmit = async event => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
+
         const formData = new FormData();
         formData.append("title", title);
         formData.append("file", file);
-        console.log(title, file);
 
-    }
+        try {
+            const response = await axios.post("http://localhost:3000/upload-files", formData, {
+                headers: { "Content-Type": "multipart/form-data" },
+            });
 
-    // const submitImage = async (e) => {
-    //     e.preventDefault();
+            const courseData = {
+                name: title,
+                file: response.data.filePath, // Assuming your API returns a file path after upload
+            };
 
+            // Sending course data to your API endpoint to store in the database
+            await axios.post("http://localhost:3000/courses/1", courseData); // Replace :classId with the actual classId
 
-    //     const result = await axios.post(
-    //         "http://localhost:5000/upload-files",
-    //         formData,
-    //         {
-    //             headers: { "Content-Type": "multipart/form-data" },
-    //         }
-    //     );
-    //     console.log(result);
-    //     if (result.data.status == "ok") {
-    //         alert("Uploaded Successfully!!!");
-    //         getPdf();
-    //     }
-    // };
+            console.log("Course added successfully!");
+        } catch (error) {
+            console.error("Error adding course:", error);
+        }
+    };
     return (
         <div className="pdfForm">
             <form className="formStyle" onSubmit={handleSubmit}>
@@ -57,27 +57,6 @@ const AddCourse = () => {
                     Submit
                 </button>
             </form>
-            {/* <div className="uploaded">
-                <h4>Uploaded PDF:</h4>
-                <div className="output-div">
-                    {allImage == null
-                        ? ""
-                        : allImage.map((data) => {
-                            return (
-                                <div className="inner-div">
-                                    <h6>Title: {data.title}</h6>
-                                    <button
-                                        className="btn btn-primary"
-                                        onClick={() => showPdf(data.pdf)}
-                                    >
-                                        Show Pdf
-                                    </button>
-                                </div>
-                            );
-                        })}
-                </div>
-            </div>
-            <PdfComp pdfFile={pdfFile} /> */}
         </div>
     )
 }
