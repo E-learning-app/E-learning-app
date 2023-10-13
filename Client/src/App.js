@@ -94,6 +94,7 @@ const router = createBrowserRouter([
 
 function App() {
   const [user, setUser] = useState("")
+  
   console.log("i'm cosole logged from app ",user)
   return (
     <div>

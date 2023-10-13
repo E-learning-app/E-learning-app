@@ -18,8 +18,8 @@ function Users() {
                     <th></th>
                 </tr>
                 <tr className="border-b hover:bg-orange-100 bg-gray-100">
-                    <td className="p-3 px-5"><input type="text"  className="bg-transparent" /></td>
-                    <td className="p-3 px-5"><input type="text" placeholder="class.name" className="bg-transparent" /></td>
+                    <td className="p-3 px-5"><input type="text"  className="bg-transparent" placeholder="email" /></td>
+                    <td className="p-3 px-5"><input type="text" placeholder="class name" className="bg-transparent" /></td>
                     <td className="p-3 px-5">
                         <select  className="bg-transparent">
                             <option value="user">user</option>
