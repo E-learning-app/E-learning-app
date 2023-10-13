@@ -1,32 +1,37 @@
 const db = require("../Database/index");
-const bcrypt =require("bcrypt")
-const jwt = require("jsonwebtoken")
-require('dotenv').config();
-module.exports ={
-    getAllUsers :async(req,res)=>{
-     
-        try{
-            const allUsers = await db.User.findAll();
-            res.status(200).json(allUsers)
-        }catch(err){
-            console.log(err)
-            res.status(500).send(err)
-        }
-    },
-    
-    addUser :async (req,res)=>{
-        const {firstName , lastName , email , password}= req.body
-        try{
-            const hash =await bcrypt.hash(password,10)
-            const resp =await db.User.create({firstName:firstName , lastName:lastName ,email:email,password:hash ,role:"user"})
-            res.status(200).json(resp)
-            // resp.send(hash)
-        }catch(err){
-            res.status(500).send(err)
-        }
-    }, 
+const { User, Class } = require("../Database/index");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
+module.exports = {
+  getAllUsers: async (req, res) => {
+    try {
+      const allUsers = await User.findAll();
+      res.status(200).json(allUsers);
+    } catch (err) {
+      console.log(err);
+      res.status(500).send(err);
+    }
+  },
 
+  addUser: async (req, res) => {
+    const { firstName, lastName, email, password } = req.body;
+    try {
+      const hash = await bcrypt.hash(password, 10);
+      const resp = await User.create({
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        password: hash,
+        role: "user",
+      });
+      res.status(200).json(resp);
+      // resp.send(hash)
+    } catch (err) {
+      res.status(500).send(err);
+    }
+  },
 
     logUser : async(req,res)=>{
         const {email , password}=req.body
@@ -67,5 +72,22 @@ module.exports ={
     },
 
 
-
-}
+  getAllClasses: async (req, res) => {
+    const userId = req.params.userId;
+    try {
+      const { classes } = await User.findByPk(userId, {
+        include: {
+          model: Class,
+          through: {
+            attributes: [],
+          },
+        },
+      });
+      //   console.log(classes);
+      res.status(200).json(classes);
+    } catch (err) {
+      console.error(err);
+      res.status(500).send(err);
+    }
+  },
+};

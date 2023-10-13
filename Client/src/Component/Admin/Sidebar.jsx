@@ -12,11 +12,12 @@ import {
     HiViewBoards,
   } from "react-icons/hi"
 function Sidebars() {
+ 
   return (
 
      <Sidebar
         aria-label="Sidebar with content separator example"
-        style={{ backgroundColor: "white" }}
+        style={{ backgroundColor: "#F9FAFB" }}
        
       >
         <Sidebar.Items style={{ backgroundColor: "white" }}>
@@ -34,7 +35,7 @@ function Sidebars() {
           <Link to='login'><div style={{ flex: 2,  flexDirection: 'column', justifyContent: 'flex-end' , marginBottom: '20px' }}>
     <Sidebar.ItemGroup>
       <Sidebar.Item href="#" icon={HiLogout}>
-        <p>Logout</p>
+        <p style={{ color: "black", fontSize: "20px" }}>Logout</p>
       </Sidebar.Item>
     </Sidebar.ItemGroup>
   </div></Link>

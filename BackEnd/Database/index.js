@@ -1,7 +1,7 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const config = require("./config/config.json");
 
-const sequelize = new Sequelize(config.database, config.User, config.password, {
+const sequelize = new Sequelize(config.database, config.user, config.password, {
   host: config.host,
   dialect: "mysql",
 });
@@ -31,14 +31,14 @@ db.Course.belongsToMany(db.Class, {
   foreignKey: "courseId",
 });
 
-db.User.belongsToMany(db.Course, {
-  through: "StudentCourses",
-  foreignKey: "studentId",
-});
-db.Course.belongsToMany(db.User, {
-  through: "StudentCourses",
-  foreignKey: "courseId",
-});
+// db.User.belongsToMany(db.Course, {
+//   through: "StudentCourses",
+//   foreignKey: "studentId",
+// });
+// db.Course.belongsToMany(db.User, {
+//   through: "StudentCourses",
+//   foreignKey: "courseId",
+// });
 
 const connect = async () => {
   try {

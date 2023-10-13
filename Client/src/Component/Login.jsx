@@ -23,15 +23,14 @@ const handleSubmit = (e) => {
 
   const token = localStorage.getItem("token");
   axios.post("http://localhost:3000/User/logUser", inputs)
-  .then((response) => {
-    const token = response.data.token;
-    localStorage.setItem("token", token );
-    // console.log(response.data)
-
-    // Assuming the user data is included in the response, set the user state.
-    setUser(response.data.user); // Adjust this line based on your response structure.
-
-    navigate("/layout");
+  
+  .then((response)=>{
+    localStorage.setItem("token",response.data.token)
+    navigate("/layout")
+    
+  }).catch((err)=>{
+    console.log(err)
+    alert('invalid')
   })
   .catch((err) => {
     console.log(err);
