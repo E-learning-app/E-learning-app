@@ -25,7 +25,7 @@ function Signup() {
   }
 
   return (
-    <section className="vh-100" style={{ backgroundColor: '#D3D3D3' }}>
+    <section className="vh-100" style={{ background: `url("https://www.danielmcclure.com/wp-content/uploads/Jordan1-large-620x380.jpg")` }}>
       <div className="container py-5 h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col col-xl-10">

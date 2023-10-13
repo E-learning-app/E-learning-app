@@ -58,12 +58,12 @@ function Classes() {
 
   const openModal = () => {
     setModalOpen(true);
-    document.body.classList.add("blur-background")
+
   };
 
   const closeModal = () => {
     setModalOpen(false);
-    document.body.classList.remove("blur-background")
+
   };
 
   const modalStyles = {
@@ -72,28 +72,28 @@ function Classes() {
 
 
   return (
-
-    <div className='px-3 py-4 flex'style={{backgroundColor: '#D3D3D3' ,flex: 1, overflowY: "auto" }} >
+    <div className="px-3 py-4 flex" style={{ backgroundColor: "#D3D3D3", flex: 1, overflowY: "auto" }}>
 <button
   onClick={openModal}
-  className="block text-white bg-orange-700 hover-bg-orange-800 focus-ring-4 focus-outline-none focus-ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark-bg-orange-600 dark-hover-bg-orange-700 dark-focus-ring-orange-800"
+  className="text-white bg-gradient-to-r from-orange-500 via-orange-600 to-orange-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-orange-300 dark:focus:ring-orange-800 shadow-lg shadow-orange-500/50 dark:shadow-lg dark:shadow-orange-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
   type="button"
   style={{
-    height:"150px",
-    position: "absolute",
-    top: "210px", 
-    right: "1200px", 
+    height: "150px",
+    position: "relative",
+    top: "20%",
+    left: "10%",
+    transform: "translate(-50%, -50%)",
   }}
 >
   Add classes
 </button>
-<div id="authentication-modal" style={{ ...modalStyles, position: 'absolute', left: '750px', top: '150px' }} className="fixed flex">
+
         <div className="w-full max-w-md">
           <div className="bg-white rounded-lg shadow dark-bg-gray-700">
             <button
               type="button"
               onClick={closeModal}
-              className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover-bg-gray-200 hover-text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark-hover-bg-gray-600 dark-hover-text-white"
+              className="absolute top-18 right-1.5 text-gray-400 bg-transparent hover-bg-gray-200 hover-text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark-hover-bg-gray-600 dark-hover-text-white"
               data-modal-hide="authentication-modal"
             >
               <svg
@@ -219,39 +219,48 @@ function Classes() {
       </div>
       <div className="class-list"   style={{
     height:"150px",
-    position: "absolute",
-    top: "210px", 
-    right: "1095px", 
+    position: "relative",
+    top: "20%",
+    left: "10%",
+    transform: "translate(-50%, -50%)",
+
   }}>
+        
 
-<div className="class-list" style={{
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "space-between",
-      alignItems: "center",
-        position: "absolute",
-        top: "210px",
-        right: "50px",
-      }}>
-        {classList.map((classInfo, index) => (
-          <div key={index} className="class-info" style={{backgroundColor:'red',position: 'relative', left: '150px', top: '1px'}}>
-            <img
-              src={classInfo.image}
-              alt={classInfo.name}
-              className="class-image"
-              style={{height:"150px"}}
-            />
-            <p className="class-name">{classInfo.name}</p>
-          </div>
-        ))}
 
-</div>
       </div>
-      <form className="flex items-center" style={{
-        position: "absolute",
-        top: "100px",
-        right: "570px",
-      }}>
+
+      <div className="class-list">
+        <div
+          className="class-list"
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "space-between",
+            alignItems: "center",
+            position: "absolute",
+            top: "210px",
+            right: "50px",
+          }}
+        >
+          {classList.map((classInfo, index) => (
+            <div key={index} className="class-info" style={{ backgroundColor: "red", position: "relative", left: "150px", top: "1px" }}>
+              <img src={classInfo.image} alt={classInfo.name} className="class-image" style={{ height: "150px" }} />
+              <p className="class-name">{classInfo.name}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      <form
+        className="flex items-center"
+        style={{
+          height: "150px",
+          position: "relative",
+          top: "1%",
+          left: "34%",
+          transform: "translate(-50%, -50%)",
+        }}
+      >
         <label htmlFor="search" className="sr-only">
           Search
         </label>
@@ -266,7 +275,7 @@ function Classes() {
         </div>
       </form>
     </div>
-  );
+  )
 }
 
-export default Classes;
+export default Classes

@@ -43,7 +43,7 @@ const handleSubmit = (e) => {
 
 
   return (
-    <section className="vh-100" style={{ backgroundColor: '#D3D3D3' }}>
+<section className="vh-100" style={{ background: `url("https://media.wired.com/photos/640904ded3cc29b468bd4973/16:9/w_1978,h_1112,c_limit/The-Good-and-Bad-of-ChatGPT-in-Schools-Gear-GettyImages-1256969659.jpg")` }}>
       <div className="container py-5 h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col col-xl-10">
