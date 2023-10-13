@@ -56,23 +56,7 @@ function Usernavbar() {
               className="flex items-center"
               style={{ color: "black", fontSize: "24px" }}
             >
-                  <form
-        className="flex items-center"
 
-      >
-        <label htmlFor="search" className="sr-only">
-          Search
-        </label>
-        <div className="relative w-full xl:w-96">
-          <input
-            type="text"
-            id="search"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full px-4 py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-500 dark:focus:border-orange-500"
-            placeholder="Search for a class..."
-            required
-          />
-        </div>
-      </form>
             </span>
         </Navbar.Collapse>
       </Navbar>  
