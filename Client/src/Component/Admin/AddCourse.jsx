@@ -1,32 +1,21 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 
 const AddCourse = () => {
-    const [title, setTitle] = useState("");
+    const [name, setName] = useState("");
     const [file, setFile] = useState("");
-    // const [allImage, setAllImage] = useState(null);
-    // const [pdfFile, setPdfFile] = useState(null);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
         const formData = new FormData();
-        formData.append("title", title);
+        formData.append("name", name);
         formData.append("file", file);
 
         try {
-            const response = await axios.post("http://localhost:3000/upload-files", formData, {
+            await axios.post("http://localhost:3000/courses/1", formData, {
                 headers: { "Content-Type": "multipart/form-data" },
             });
-
-            const courseData = {
-                name: title,
-                file: response.data.filePath, // Assuming your API returns a file path after upload
-            };
-
-            // Sending course data to your API endpoint to store in the database
-            await axios.post("http://localhost:3000/courses/1", courseData); // Replace :classId with the actual classId
-
             console.log("Course added successfully!");
         } catch (error) {
             console.error("Error adding course:", error);
@@ -42,7 +31,7 @@ const AddCourse = () => {
                     className="form-control"
                     placeholder="Title"
                     required
-                    onChange={(e) => setTitle(e.target.value)}
+                    onChange={(e) => setName(e.target.value)}
                 />
                 <br />
                 <input
