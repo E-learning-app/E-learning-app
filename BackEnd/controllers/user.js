@@ -73,9 +73,10 @@ module.exports = {
 
 
   getAllClasses: async (req, res) => {
-    const userId = req.params.userId;
+    // const userId = req.params.userId;
+    console.log("it's" +req.userId)
     try {
-      const { classes } = await User.findByPk(userId, {
+      const { classes } = await User.findByPk(req.userId, {
         include: {
           model: Class,
           through: {
@@ -83,7 +84,7 @@ module.exports = {
           },
         },
       });
-      //   console.log(classes);
+        // console.log(classes);
       res.status(200).json(classes);
     } catch (err) {
       console.error(err);

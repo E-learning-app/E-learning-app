@@ -13,6 +13,7 @@ import Navbars from "./Component/Navbar";
 import Sidebars from "./Component/Admin/Sidebar";
 import Users from "./Component/Admin/Users";
 import Classes from "./Component/Admin/Classes";
+import Userhome from "./Component/User/Userhome";
 
 export const userContext =createContext()
 const Layout = () => {
@@ -23,6 +24,23 @@ const Layout = () => {
       <div className="flex" style={{ minHeight: '100vh' }}>
         <div>
           <Sidebars />
+        </div>
+        <div className="flex flex-grow-1" style={{ minHeight: "100vh" }}>
+          <Outlet />
+        </div>
+      </div>
+    </div>
+    </div>
+  );
+};
+const UserLayout = () => {
+  return (
+    <div>
+    <div >
+      <Navbars />
+      <div className="flex" style={{ minHeight: '100vh' }}>
+        <div>
+          <Userhome />
         </div>
         <div className="flex flex-grow-1" style={{ minHeight: "100vh" }}>
           <Outlet />
@@ -61,6 +79,17 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "/UserLayout",  
+    element: < UserLayout />,
+    children: [
+      {
+        path: "user/home",
+        element: <Userhome />,
+      },
+      
+    ],
+  }
 ]);
 
 function App() {

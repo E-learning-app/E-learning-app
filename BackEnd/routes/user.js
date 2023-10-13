@@ -11,9 +11,9 @@ const {
 
 router.post("/addUser", addUser);
 router.post("/logUser", logUser);
-router.use(authJwt.verifyToken);
+// router.use(authJwt.verifyToken);
 router.get("/getAllUsers", authJwt.verifyToken, getAllUsers);
 
-router.get("/classes/:userId", getAllClasses);
+router.get("/classes/",authJwt.verifyToken, getAllClasses);
 
 module.exports = router;

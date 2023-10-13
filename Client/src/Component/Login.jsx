@@ -23,20 +23,24 @@ const handleSubmit = (e) => {
 
   const token = localStorage.getItem("token");
   axios.post("http://localhost:3000/User/logUser", inputs)
-  
-  .then((response)=>{
-    localStorage.setItem("token",response.data.token)
-    navigate("/layout")
-    
-  }).catch((err)=>{
-    console.log(err)
-    alert('invalid')
-  })
-  .catch((err) => {
-    console.log(err);
-    alert('Invalid login credentials');
-  });
-}
+    .then((response) => {
+      localStorage.setItem("token", response.data.token);
+      setUser(response.data.user);
+
+      if (response.data.user.role === "admin") {
+        console.log("hello admin");
+        navigate("/layout");
+      } else {
+        console.log("hello from user");
+        navigate("/UserLayout");
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      alert('Invalid login credentials');
+    });
+};
+
 
   return (
     <section className="vh-100" style={{ backgroundColor: '#D3D3D3' }}>
