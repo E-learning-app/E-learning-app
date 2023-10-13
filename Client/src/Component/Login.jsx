@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import { useState, createContext , useContext } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { userContext } from "../App";
 function Login() {
 
+  const { user, setUser } = useContext(userContext);
+  // const [user,setUser]=useState("")
   const [inputs,setInputs]=useState({})
+
   const navigate = useNavigate()
-  console.log(inputs)
 const handleChange =(e)=>{
   e.preventDefault()
   const name = e.target.name;
@@ -19,18 +22,26 @@ const handleSubmit = (e) => {
   e.preventDefault();
 
   const token = localStorage.getItem("token");
-
   axios.post("http://localhost:3000/User/logUser", inputs)
-  
-  .then((response)=>{
-    localStorage.setItem("token",response.data.token)
-    navigate("/layout")
-    
-  }).catch((err)=>{
-    console.log(err)
-    alert('invalid')
-  })
-}
+    .then((response) => {
+      localStorage.setItem("token", response.data.token);
+      setUser(response.data.user);
+
+      if (response.data.user.role === "admin") {
+        console.log("hello admin");
+        navigate("/layout");
+      } else {
+        console.log("hello from user");
+        navigate("/UserLayout");
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+      alert('Invalid login credentials');
+    });
+};
+
+
   return (
     <section className="vh-100" style={{ backgroundColor: '#D3D3D3' }}>
       <div className="container py-5 h-100">
@@ -70,7 +81,7 @@ const handleSubmit = (e) => {
                       </div>
                       <div className="pt-1 mb-4">
                        <button className="btn btn-dark btn-lg btn-block" type="button" onClick={handleSubmit} style={{ backgroundColor: '#ff6219' }}>
-                          Login
+                          Login 
                         </button>
                       </div>
                       <p className="mb-5 pb-lg-2" style={{ color: '#393f81' }}>

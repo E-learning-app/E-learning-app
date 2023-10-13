@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Dropdown, Navbar, Avatar } from "flowbite-react";
 import { Link } from "react-router-dom";
-
-
+import { userContext } from "../App";
 function Navbars() {
+  const { user } = useContext(userContext); 
   const navbarStyle = {
     backgroundColor: "#F9FAFB",
   };
@@ -38,9 +38,9 @@ function Navbars() {
             }
           >
             <Dropdown.Header>
-              <span className="block text-sm">El Hesh</span>
+              <span className="block text-sm">{user.firstName}</span>
               <span className="block truncate text-sm font-medium">
-                elhesh@gmail.com
+                {user.email}
               </span>
             </Dropdown.Header>
             <p>Settings</p>
@@ -56,7 +56,7 @@ function Navbars() {
               className="flex items-center"
               style={{ color: "black", fontSize: "24px" }}
             >
-              Admin dashboard
+              {user.role} dashboard
             </span>
         </Navbar.Collapse>
       </Navbar>  
