@@ -4,7 +4,6 @@ module.exports = {
   getAllClasses: async (req, res) => {
     try {
       const classRooms = await Class.findAll();
-      console.log(classRooms);
       res.status(200).json(classRooms);
     } catch (error) {
       console.log(error);

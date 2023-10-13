@@ -12,60 +12,62 @@ import Navbars from "./Component/Navbar";
 import Sidebars from "./Component/Admin/Sidebar";
 import Users from "./Component/Admin/Users";
 import Classes from "./Component/Admin/Classes";
+import AddCourse from "./Component/Admin/AddCourse";
 
-const Layout = () => {
-  return (
-    <div>
-      <div>
-        <Navbars />
-        <div className="flex" style={{ minHeight: "100vh" }}>
-          <div>
-            <Sidebars />
-          </div>
-          <div className="flex flex-grow-1" style={{ minHeight: "100vh" }}>
-            <Outlet />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
+// const Layout = () => {
+//   return (
+//     <div>
+//       <div>
+//         <Navbars />
+//         <div className="flex" style={{ minHeight: "100vh" }}>
+//           <div>
+//             <Sidebars />
+//           </div>
+//           <div className="flex flex-grow-1" style={{ minHeight: "100vh" }}>
+//             <Outlet />
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Login />,
-  },
-  {
-    path: "/signup",
-    element: <Signup />,
-  },
-  {
-    path: "/layout",
-    element: <Layout />,
-    children: [
-      {
-        path: "home",
-        element: <Home />,
-      },
-      {
-        path: "users",
-        element: <Users />,
-      },
-      {
-        path: "classes",
-        element: <Classes />,
-      },
-    ],
-  },
-]);
+// const router = createBrowserRouter([
+//   {
+//     path: "/",
+//     element: <Login />,
+//   },
+//   {
+//     path: "/signup",
+//     element: <Signup />,
+//   },
+//   {
+//     path: "/layout",
+//     element: <Layout />,
+//     children: [
+//       {
+//         path: "home",
+//         element: <Home />,
+//       },
+//       {
+//         path: "users",
+//         element: <Users />,
+//       },
+//       {
+//         path: "classes",
+//         element: <Classes />,
+//       },
+//     ],
+//   },
+// ]);
 
 function App() {
   return (
     <div>
-      <div>
+      <AddCourse />
+      {/* <div>
         <RouterProvider router={router} />
-      </div>
+      </div> */}
     </div>
   );
 }
