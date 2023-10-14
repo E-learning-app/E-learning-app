@@ -6,6 +6,7 @@ function Classes() {
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
   const [classList, setClassList] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
   console.log(image);
 
   const handleImageUpload = async (e) => {
@@ -34,6 +35,10 @@ function Classes() {
         console.error("Error fetching classes:", error);
       });
   }, [])
+
+  const filteredClasses = classList.filter((classInfo) => {
+    return classInfo.name.toLowerCase().includes(searchTerm.toLowerCase());
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -68,6 +73,7 @@ function Classes() {
 
   return (
     <div className="px-3 py-4 flex" style={{ backgroundColor: "#D3D3D3", flex: 1, overflowY: "auto" }}>
+      
 <button
   onClick={openModal}
   className="text-white bg-gradient-to-r from-orange-500 via-orange-600 to-orange-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-orange-300 dark:focus:ring-orange-800 shadow-lg shadow-orange-500/50 dark:shadow-lg dark:shadow-orange-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
@@ -233,12 +239,11 @@ function Classes() {
             right: "50px",
           }}
         >
-          {classList.map((classInfo, index) => (
-            <div key={index} className="class-info" style={{ backgroundColor: "red", position: "relative", left: "150px", top: "1px" }}>
-              <img src={classInfo.image} alt={classInfo.name} className="class-image" style={{ height: "150px" }} />
-              <p className="class-name">{classInfo.name}</p>
-            </div>
-          ))}
+            
+
+      
+
+
         </div>
       </div>
       <form
@@ -260,10 +265,37 @@ function Classes() {
             id="search"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full px-4 py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-500 dark:focus:border-orange-500"
             placeholder="Search for a class..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
             required
           />
         </div>
       </form>
+      <div className="grid grid-cols-3 gap-4"style={{ marginRight: '100px' }}>
+  {filteredClasses.map((classInfo) => (
+    <div key={classInfo.id}>
+      <div style={{ flex: '1', minWidth: '50px', margin: '50px 0', padding: '5px' }}>
+        <a
+          href="#"
+          className="flex items-center bg-white border border-gray-500 rounded-lg hover:bg-gray-100 dark:border-gray-1000 dark-bg-gray-800 dark-hover-bg-gray-700"
+          style={{ boxShadow: '10px 2px 5px rgba(0, 0, 0, 0.1)' }}
+        >
+          <img
+            className="object-cover w-full rounded-t-lg h-45 md:h-48 md:w-48"
+            src={classInfo.image}
+            alt={classInfo.name}
+          />
+          <div className="flex flex-col justify-between p-4 leading-normal">
+            <h5 className="mb-2 text-2xl font-bold text-gray-900 dark-text-white">
+              {classInfo.name}
+            </h5>
+          </div>
+        </a>
+      </div>
+    </div>
+  ))}
+</div>
+
     </div>
   );
 }
