@@ -1,7 +1,7 @@
-const { Sequelize, DataTypes } = require("sequelize");
+const { Sequelize, DataTypes, INTEGER } = require("sequelize");
 const config = require("./config/config.json");
 
-const sequelize = new Sequelize(config.database, config.user, config.password, {
+const sequelize = new Sequelize(config.database, config.User, config.password, {
   host: config.host,
   dialect: "mysql",
 });
@@ -30,6 +30,24 @@ db.Course.belongsToMany(db.Class, {
   through: "ClassCourses",
   foreignKey: "courseId",
 });
+
+const StudentClasses = sequelize.define('StudentClasses', {
+  status: {
+    type: DataTypes.ENUM('pending', 'accepted', 'rejected'),
+    defaultValue: 'pending',
+  },
+  studentId: {
+    type: DataTypes.INTEGER,
+    allowNull: false 
+  } ,
+  classId: {
+    type :DataTypes.INTEGER,
+    allowNull :false,
+   } 
+});
+
+
+db.StudentClasses = StudentClasses
 
 // db.User.belongsToMany(db.Course, {
 //   through: "StudentCourses",

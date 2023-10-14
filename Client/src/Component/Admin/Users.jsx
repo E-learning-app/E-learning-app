@@ -1,38 +1,65 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import PendingUser from "./PendingUser";
 
-function Users() {
+function Users(props) {
+  // State to store pending users
+  const [pendingUsers, setPendingUsers] = useState([]);
+
+  // Fetch pending users on component mount
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/classess/getPendingStudentClasses")
+      .then((response) => {
+        setPendingUsers(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  // Function to handle user acceptance
+  const handleAccept = (userId) => {
+    // Handle user acceptance here
+    console.log("Accepted user with ID: ", userId);
+  };
+
+  // Function to handle user rejection
+  const handleReject = (userId) => {
+    // Handle user rejection here
+    console.log("Rejected user with ID: ", userId);
+  };
+
   return (
-    <div style={{backgroundColor: '#D3D3D3' ,flex: 1, overflowY: "auto" }}>
-    <div className="p-4 flex">
-        <h1 className="text-3xl">
-            Users manegment
-        </h1>
-    </div>
-    <div className="px-3 py-4 flex justify-center">
-        <table className="w-full text-md bg-white shadow-md rounded mb-4">
+    <div className="user-management flex justify-center">
+      <div className="text-center"> {/* Center the content */}
+        <div className="p-4 flex justify-center items-center"> {/* Center the content */}
+          <h1 className="text-3xl">Users management</h1>
+        </div>
+        <div className="px-3 py-4 flex justify-center">
+          <table className="w-full text-md bg-white shadow-md rounded mb-4">
+            <thead>
+              <tr className="border-b">
+                <th className="text-left p-3 px-5">Email</th>
+                <th className="text-left p-3 px-5">Class</th>
+                <th></th>
+              </tr>
+            </thead>
             <tbody>
-                <tr className="border-b">
-                    <th className="text-left p-3 px-5">Email</th>
-                    <th className="text-left p-3 px-5">Class</th>
-                    <th className="text-left p-3 px-5">Role</th>
-                    <th></th>
-                </tr>
-                <tr className="border-b hover:bg-orange-100 bg-gray-100">
-                    <td className="p-3 px-5"><input type="text"  className="bg-transparent" placeholder="email" /></td>
-                    <td className="p-3 px-5"><input type="text" placeholder="class name" className="bg-transparent" /></td>
-                    <td className="p-3 px-5">
-                        <select  className="bg-transparent">
-                            <option value="user">user</option>
-                            <option value="admin">admin</option>
-                        </select>
-                    </td>
-                    <td className="p-3 px-5 flex justify-end"><button type="button" className="mr-3 text-sm bg-green-500 hover:bg-green-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Add to class</button><button type="button" className="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline">Delete from class</button></td>
-                </tr>
+              {pendingUsers.map((user) => (
+                <PendingUser
+                  key={user.id}
+                  user={user}
+                  onAccept={handleAccept}
+                  onReject={handleReject}
+                />
+              ))}
             </tbody>
-        </table>
+          </table>
+        </div>
+      </div>
     </div>
-</div>
-  )
+  );
 }
 
-export default Users
+export default Users;

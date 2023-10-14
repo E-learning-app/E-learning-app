@@ -8,13 +8,18 @@ const {
   updateClass,
   deleteClass,
   addUserToClass,
+  acceptUserRequest,
+  getAllPendingStudentClasses,
 } = require("../controllers/class");
 
-router.get("/:userId", getAllClasses);
-router.get("/:classId", getOneClass);
+router.get("/getAll", getAllClasses); 
+
 router.post("/", addClass);
 router.post("/:classId/:userId", addUserToClass);
 router.put("/:classId", updateClass);
 router.delete("/:classId", deleteClass);
+router.put("/accept/:classId/:userId",acceptUserRequest)
+router.get("/getPendingStudentClasses", getAllPendingStudentClasses);
+router.get("/:classId", getOneClass);
 
 module.exports = router;
