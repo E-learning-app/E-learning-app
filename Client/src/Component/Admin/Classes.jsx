@@ -8,7 +8,6 @@ function Classes() {
   const [image, setImage] = useState("");
   const [classList, setClassList] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  console.log(image);
 
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
@@ -45,7 +44,7 @@ function Classes() {
     try {
       const response = await axios.post("http://localhost:3000/classess/", {
         name,
-        image,
+        image: image,
       });
       setClassList([...classList, { name, image }]);
       setName("");
@@ -257,7 +256,7 @@ function Classes() {
       </form>
       <div className="grid grid-cols-3 gap-4" style={{ marginRight: '100px' }}>
         {filteredClasses.map((classInfo) => (
-          <Link to={`/ClassesLayout/classes/${classInfo.id}`}><div key={classInfo.id}>
+          <Link to={`/layout/info/${classInfo.id}`}><div key={classInfo.id}>
             <div style={{ flex: '1', minWidth: '50px', margin: '50px 0', padding: '5px', cursor: 'pointer', }}>
               <a
                 href="#"

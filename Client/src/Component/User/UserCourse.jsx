@@ -2,7 +2,7 @@ import React from "react";
 
 
 
-const Course = ({ course }) => {
+const UserCourse = ({ course }) => {
     console.log(course)
     return (
 
@@ -14,4 +14,4 @@ const Course = ({ course }) => {
         </div>
     )
 }
-export default Course;
+export default UserCourse;

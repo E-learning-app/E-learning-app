@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import Course from './Course';
-import AddCourse from './AddCourse';
+import UserCourse from './UserCourse';
+import { Link } from 'react-router-dom';
 
-const Courses = () => {
+
+const   UserCourses = () => {
     const [courses, setCourses] = useState([]);
     const { classId } = useParams();
     console.log(classId)
@@ -20,19 +21,19 @@ const Courses = () => {
     useEffect(() => {
         fetchCourses();
     }, []);
+    console.log(courses)
     return (
         <div>
-            <div><AddCourse classId={classId} fetchCourses={fetchCourses} /></div>
             <ul className="course-list">
                 {courses.map(course => (
                     <li className="course-list-item" key={course.id}>
-                        <Course course={course} />
+                        <UserCourse course={course} />
                     </li>
                 ))}
-
+                
             </ul>
         </div>
     );
 };
 
-export default Courses;
+export default UserCourses;

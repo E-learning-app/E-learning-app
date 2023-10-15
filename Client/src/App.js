@@ -21,6 +21,7 @@ import Classeshome from "./Component/Classes/Classeshome";
 import Classessidebar from "./Component/Classes/Classessidebar";
 import UserPersonnel from "./Component/User/UserPersonnel";
 import { TodoProvider } from "./Component/User/TodoContext";
+import UserCourses from "./Component/User/UserCourses";
 import Courses from "./Component/Admin/Courses";
 
 export const userContext = createContext();
@@ -97,6 +98,10 @@ const router = createBrowserRouter([
         path: "admin/classes",
         element: <Classes />,
       },
+      {
+        path: "info/:classId",
+        element: <Courses />,
+      },
     ],
   },
   {
@@ -115,6 +120,10 @@ const router = createBrowserRouter([
         path: "user/personalSpace",
         element: <UserPersonnel />,
       },
+      {
+        path: "info/:classId",
+        element: <UserCourses />,
+      },
     ],
   },
   {
@@ -124,10 +133,6 @@ const router = createBrowserRouter([
       {
         path: "classes/home",
         element: <Classeshome />,
-      },
-      {
-        path: "classes/:classId",
-        element: <Courses />,
       },
     ],
   },

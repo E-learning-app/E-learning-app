@@ -1,7 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 
-const AddCourse = () => {
+const AddCourse = ({ classId, fetchCourses }) => {
+    console.log(classId)
     const [name, setName] = useState("");
     const [file, setFile] = useState("");
 
@@ -13,10 +14,11 @@ const AddCourse = () => {
         formData.append("file", file);
 
         try {
-            await axios.post("http://localhost:3000/courses/1", formData, {
+            await axios.post(`http://localhost:3000/courses/${classId}`, formData, {
                 headers: { "Content-Type": "multipart/form-data" },
             });
             console.log("Course added successfully!");
+            fetchCourses()
         } catch (error) {
             console.error("Error adding course:", error);
         }
