@@ -26,7 +26,7 @@ function Classes() {
     }
   };
   useEffect(() => {
-    axios.get("http://localhost:3000/classes")
+    axios.get("http://localhost:3000/classess/getAll")
       .then((response) => {
         setClassList(response.data); // Assuming response.data is an array
       })
@@ -38,6 +38,8 @@ function Classes() {
   const filteredClasses = classList.filter((classInfo) => {
     return classInfo.name.toLowerCase().includes(searchTerm.toLowerCase());
   });
+
+ 
 
   const handleSubmit = async (e) => {
     e.preventDefault();

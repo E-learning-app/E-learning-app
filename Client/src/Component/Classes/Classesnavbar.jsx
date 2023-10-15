@@ -1,14 +1,32 @@
-import React, { useContext } from "react";
+import React, { useContext ,useState , useEffect } from "react";
+import axios from "axios";
 import { Dropdown, Navbar, Avatar } from "flowbite-react";
 import { Link } from "react-router-dom";
 import { userContext } from "../../App";
+function Classesnavbar({ classData }) {
 
-
-function Usernavbar() {
   const { user } = useContext(userContext); 
   const navbarStyle = {
     backgroundColor: "#F9FAFB",
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    const config = {
+      headers:{
+        'x-access-token': token
+      }
+    }
+   
+    axios.get('http://localhost:3000/User/classes', config)
+      .then((response) => {
+        setClassName(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching classes:", error);
+      });
+  }, [])
+
   return (
     <div >
          <Navbar  fluid rounded style={navbarStyle}>
@@ -54,16 +72,19 @@ function Usernavbar() {
           <Navbar.Toggle />
         </div>
         <Navbar.Collapse>
-        <span
+         
+            <span
+            
               className="flex items-center"
               style={{ color: "black", fontSize: "24px" }}
             >
-
+             
             </span>
+   
         </Navbar.Collapse>
       </Navbar>  
       </div>
   );
 }
 
-export default Usernavbar;
+export default Classesnavbar;

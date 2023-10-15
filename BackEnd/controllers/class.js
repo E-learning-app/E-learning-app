@@ -94,6 +94,7 @@ module.exports = {
       res.status(500).send("An error occurred: " + error.message);
     }
   },
+
   acceptUserRequest: async (req, res) => {
     const classId = req.params.classId;
     const userId = req.params.userId;
@@ -120,6 +121,34 @@ module.exports = {
       res.status(500).send("An error occurred: " + error.message);
     }
   },  
+
+  //for accepted users  
+  getUserEnrolledClasses: async (req, res) => {
+    const userId = req.params.userId;
+
+    try {
+      const enrolledClasses = await StudentClasses.findAll({
+        where: {
+          studentId: userId,
+          status: 'accepted',
+        },
+      });
+
+      const classIds = enrolledClasses.map((enrollment) => enrollment.classId);
+
+      const enrolledClassDetails = await Class.findAll({
+        where: {
+          id: classIds,
+        },
+      });
+
+      res.status(200).json(enrolledClassDetails);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("An error occurred: " + error.message);
+    }
+  },
+  
   rejectUserRequest: async (req, res) => {
     const classId = req.params.classId;
     const userId = req.params.userId;

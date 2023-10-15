@@ -61,9 +61,13 @@ module.exports = {
 
     getUser : async(req,res)=>{
         
-        const {id}=req.params
+        const {Userid}=req.params
         try{
-            const User =await db.User.findByPk(id)
+            const User =await db.User.findOne({
+                where: {
+                    id: Userid,
+                  },
+            })
             res.status(200).json({message : {"firstName":User.firstName , "lastName":User.lastName,"email":User.email}})
         }catch(err){
 

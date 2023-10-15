@@ -10,6 +10,7 @@ const {
   addUserToClass,
   acceptUserRequest,
   getAllPendingStudentClasses,
+  getUserEnrolledClasses,
 } = require("../controllers/class");
 
 router.get("/getAll", getAllClasses); 
@@ -21,5 +22,6 @@ router.delete("/:classId", deleteClass);
 router.put("/accept/:classId/:userId",acceptUserRequest)
 router.get("/getPendingStudentClasses", getAllPendingStudentClasses);
 router.get("/:classId", getOneClass);
+router.get("/userAcceptedClass/:userId",getUserEnrolledClasses)
 
 module.exports = router;

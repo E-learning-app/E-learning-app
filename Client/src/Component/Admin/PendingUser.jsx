@@ -1,39 +1,48 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
+import { userContext } from "../../App";
 
-function PendingUser({ user, onAccept, onReject }) {
-  // State to store user information and class
+function PendingUser({ userr, onAccept, onReject }) {
   const [info, setInfo] = useState({});
   const [userClass, setUserClass] = useState({});
+  const { user } = useContext(userContext);
 
-  // Fetch user information and class details on component mount
   useEffect(() => {
-    axios.get(`http://localhost:3000/User/getOneUser/${user.id}`)
-      .then((response) => {
-        setInfo(response.data.message);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    const fetchData = async () => {
+      try {
+        // Make both requests concurrently
+        const [userInfoResponse, userClassResponse] = await Promise.all([
+          axios.get(`http://localhost:3000/User/getOneUser/${userr.studentId}`),
+          axios.get(`http://localhost:3000/classess/${userr.classId}`)
+        ]);
 
-    axios.get(`http://localhost:3000/classess/${user.classId}`)
-      .then((response) => {
-        setUserClass(response.data);
-      })
-      .catch((err) => {
+        setInfo(userInfoResponse.data.message);
+        setUserClass(userClassResponse.data);
+      } catch (err) {
         console.log(err);
-      });
-  }, [user.id, user.classId]);
+      }
+    };
+
+    fetchData();
+  }, [userr.id, userr.classId]);
 
   return (
-    <tr className="border-b hover:bg-orange-100 bg-gray-100 ">
-      <td className="p-3 px-5 text-center">{info.email}</td> {/* Center the email cell */}
-      <td className="p-3 px-5 text-center">{userClass.name}</td> {/* Center the class cell */}
-      <td className="p-3 px-5 flex justify-center"> {/* Center buttons with justify-center */}
-        <button type="button" className="mr-3 text-sm bg-green-500 hover:bg-green-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline" onClick={() => onAccept(user.id)}>
+    <tr className="border-b hover:bg-orange-100 bg-gray-100">
+      <td className="p-3 px-5">{info.email}</td>
+      <td className="p-3 px-5">{userClass.name}</td>
+      <td className="p-3 px-5 flex justify-end">
+        <button
+          type="button"
+          className="mr-3 text-sm bg-green-500 hover:bg-green-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
+          onClick={() => onAccept(userr.studentId ,userr.classId)}
+        >
           Accept
         </button>
-        <button type="button" className="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline" onClick={() => onReject(user.id)}>
+        <button
+          type="button"
+          className="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
+          onClick={() => onReject(userr.id)}
+        >
           Reject
         </button>
       </td>
