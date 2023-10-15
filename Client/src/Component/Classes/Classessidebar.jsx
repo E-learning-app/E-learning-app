@@ -28,8 +28,8 @@ function Classessidebar() {
           <Link to='user/classes' ><div><Sidebar.Item icon={HiAcademicCap}>
               <p style={{ color: "black", fontSize: "20px" }}>classes</p>
             </Sidebar.Item></div></Link>
-            <Link to=''><div><Sidebar.Item href="#" icon={HiAcademicCap}>
-              <p style={{ color: "black", fontSize: "20px" }}>Ur classes</p>
+            <Link to='user/personalSpace'><div><Sidebar.Item href="#" icon={HiAcademicCap}>
+              <p style={{ color: "black", fontSize: "20px" }}>Personnel</p>
             </Sidebar.Item></div></Link>
           </Sidebar.ItemGroup>
           <Link to='/'><div style={{ flex: 2,  flexDirection: 'column', justifyContent: 'flex-end' , marginBottom: '20px' }}>
