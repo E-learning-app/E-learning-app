@@ -45,9 +45,10 @@ function Userclasses() {
 
 
   return (
-    <div>
-      <div>
-        <form className="flex items-center">
+    <div style={{backgroundColor: '#D3D3D3'  }}>
+    <div  >
+      <div >
+        <form className="flex items-center" >
           <label htmlFor="search" className="sr-only">
             Search
           </label>
@@ -71,7 +72,7 @@ function Userclasses() {
           </div>
         </form>
       </div>
-      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }} >
         {filteredClasses.map((cls) => (
           <div key={cls.id} style={{ flex: '1', minWidth: '300px', margin: '10px 0', padding: '10px'}}>
             <a
@@ -97,6 +98,7 @@ function Userclasses() {
           </div>
         ))}
       </div>
+    </div>
     </div>
   );
 }
