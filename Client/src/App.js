@@ -9,7 +9,7 @@ import React, { createContext, useState } from "react";
 import Login from "./Component/Login";
 import Signup from "./Component/Signup";
 import Home from "./Component/Admin/Home";
-import Navbars from "./Component/Navbar";
+import Navbars from "./Component/Admin/Navbar";
 import Sidebars from "./Component/Admin/Sidebar";
 import Users from "./Component/Admin/Users";
 import Classes from "./Component/Admin/Classes";
