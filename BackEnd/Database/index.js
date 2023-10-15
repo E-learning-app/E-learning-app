@@ -1,4 +1,4 @@
-const { Sequelize, DataTypes } = require("sequelize");
+const { Sequelize, DataTypes, INTEGER } = require("sequelize");
 const config = require("./config/config.json");
 
 const sequelize = new Sequelize(config.database, config.user, config.password, {
@@ -31,14 +31,31 @@ db.Course.belongsToMany(db.Class, {
   foreignKey: "courseId",
 });
 
-// db.User.belongsToMany(db.Course, {
-//   through: "StudentCourses",
-//   foreignKey: "studentId",
-// });
-// db.Course.belongsToMany(db.User, {
-//   through: "StudentCourses",
-//   foreignKey: "courseId",
-// });
+const StudentClasses = sequelize.define("StudentClasses", {
+  status: {
+    type: DataTypes.ENUM("pending", "accepted", "rejected"),
+    defaultValue: "pending",
+  },
+  studentId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+  classId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+});
+
+db.StudentClasses = StudentClasses;
+
+db.User.belongsToMany(db.Course, {
+  through: "StudentCourses",
+  foreignKey: "studentId",
+});
+db.Course.belongsToMany(db.User, {
+  through: "StudentCourses",
+  foreignKey: "courseId",
+});
 
 const connect = async () => {
   try {

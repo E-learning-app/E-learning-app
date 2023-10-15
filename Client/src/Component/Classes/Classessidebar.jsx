@@ -10,8 +10,9 @@ import {
     HiTable,
     HiUsers,
     HiViewBoards,
+    HiOutlineAnnotation
   } from "react-icons/hi"
-function Sidebars() {
+function Classessidebar() {
  
   return (
 
@@ -22,17 +23,17 @@ function Sidebars() {
       >
         <Sidebar.Items style={{ backgroundColor: "white" }}>
           <Sidebar.ItemGroup style={{ backgroundColor: "white" }}>
-          <Link to='admin/home' ><div><Sidebar.Item icon={HiHome}>
+          <Link to='user/home' ><div><Sidebar.Item icon={HiHome}>
               <p style={{ color: "black", fontSize: "20px" }}>Home</p>
             </Sidebar.Item></div></Link>
-            <Link to="admin/users"> <div>  <Sidebar.Item  icon={HiUsers}>
-              <span style={{ color: "black", fontSize: "20px" }}> Users</span>
+          <Link to='user/classes' ><div><Sidebar.Item icon={HiAcademicCap}>
+              <p style={{ color: "black", fontSize: "20px" }}>classes</p>
             </Sidebar.Item></div></Link>
-            <Link to='admin/classes'><div><Sidebar.Item href="#" icon={HiAcademicCap}>
-              <p style={{ color: "black", fontSize: "20px" }}>Classes</p>
+            <Link to='user/personalSpace'><div><Sidebar.Item href="#" icon={HiOutlineAnnotation}>
+              <p style={{ color: "black", fontSize: "20px" }}>Personel <br/> space</p>
             </Sidebar.Item></div></Link>
           </Sidebar.ItemGroup>
-          <Link to='login'><div style={{ flex: 2,  flexDirection: 'column', justifyContent: 'flex-end' , marginBottom: '20px' }}>
+          <Link to='/'><div style={{ flex: 2,  flexDirection: 'column', justifyContent: 'flex-end' , marginBottom: '20px' }}>
     <Sidebar.ItemGroup>
       <Sidebar.Item href="#" icon={HiLogout}>
         <p style={{ color: "black", fontSize: "20px" }}>Logout</p>
@@ -46,4 +47,4 @@ function Sidebars() {
   )
 }
 
-export default Sidebars
+export default Classessidebar
