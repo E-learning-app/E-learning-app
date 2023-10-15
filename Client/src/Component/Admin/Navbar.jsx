@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Dropdown, Navbar, Avatar } from "flowbite-react";
 import { Link } from "react-router-dom";
-import { userContext } from "../App";
+import { userContext } from "../../App";
 function Navbars() {
   const { user } = useContext(userContext); 
   const navbarStyle = {

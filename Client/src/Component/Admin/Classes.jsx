@@ -6,6 +6,7 @@ function Classes() {
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
   const [classList, setClassList] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
   console.log(image);
 
   const handleImageUpload = async (e) => {
@@ -25,15 +26,20 @@ function Classes() {
     }
   };
   useEffect(() => {
-   
-    axios.get("http://localhost:3000/classess/1")
+    axios.get("http://localhost:3000/classess/getAll")
       .then((response) => {
-        setClassList(response.data);
+        setClassList(response.data); // Assuming response.data is an array
       })
       .catch((error) => {
         console.error("Error fetching classes:", error);
       });
-  }, [])
+  }, []);
+
+  const filteredClasses = classList.filter((classInfo) => {
+    return classInfo.name.toLowerCase().includes(searchTerm.toLowerCase());
+  });
+
+ 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -53,12 +59,12 @@ function Classes() {
 
   const openModal = () => {
     setModalOpen(true);
-    document.body.classList.add("blur-background")
+
   };
 
   const closeModal = () => {
     setModalOpen(false);
-    document.body.classList.remove("blur-background")
+
   };
 
   const modalStyles = {
@@ -67,29 +73,35 @@ function Classes() {
   
 
   return (
-    <div className='px-3 py-4 flex'style={{backgroundColor: '#D3D3D3' ,flex: 1, overflowY: "auto" }} >
+    <div className="px-3 py-4 flex" style={{ backgroundColor: "#D3D3D3", flex: 1, overflowY: "auto" }}>
+      
 <button
   onClick={openModal}
-  className="block text-white bg-orange-700 hover-bg-orange-800 focus-ring-4 focus-outline-none focus-ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark-bg-orange-600 dark-hover-bg-orange-700 dark-focus-ring-orange-800"
+  className="text-white bg-gradient-to-r from-orange-500 via-orange-600 to-orange-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-orange-300 dark:focus:ring-orange-800 shadow-lg shadow-orange-500/50 dark:shadow-lg dark:shadow-orange-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
   type="button"
   style={{
-    height:"150px",
-    position: "absolute",
-    top: "210px", 
-    right: "1200px", 
+    height: "150px",
+    position: "relative",
+    top: "20%",
+    left: "10%",
+    transform: "translate(-50%, -50%)",
   }}
 >
   Add classes
 </button>
 
 
-<div id="authentication-modal" style={{ ...modalStyles, position: 'absolute', left: '750px', top: '150px' }} className="fixed flex">
+      <div
+        id="authentication-modal"
+        style={{ ...modalStyles, position: "absolute", left: "750px", top: "150px" }}
+        className="fixed flex"
+      >
         <div className="w-full max-w-md">
           <div className="bg-white rounded-lg shadow dark-bg-gray-700">
             <button
               type="button"
               onClick={closeModal}
-              className="absolute top-3 right-2.5 text-gray-400 bg-transparent hover-bg-gray-200 hover-text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark-hover-bg-gray-600 dark-hover-text-white"
+              className="absolute top-18 right-1.5 text-gray-400 bg-transparent hover-bg-gray-200 hover-text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark-hover-bg-gray-600 dark-hover-text-white"
               data-modal-hide="authentication-modal"
             >
               <svg
@@ -203,53 +215,88 @@ function Classes() {
       </div>
       <div className="class-list"   style={{
     height:"150px",
-    position: "absolute",
-    top: "210px", 
-    right: "1095px", 
+    position: "relative",
+    top: "20%",
+    left: "10%",
+    transform: "translate(-50%, -50%)",
+
   }}>
+        
 
-<div className="class-list" style={{
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "space-between",
-      alignItems: "center",
-        position: "absolute",
-        top: "210px",
-        right: "50px",
-      }}>
 
-        {classList.map((classInfo, index) => (
-          <div key={index} className="class-info" style={{backgroundColor:'red',position: 'relative', left: '150px', top: '1px'}}>
-            <img
-              src={classInfo.image}
-              alt={classInfo.name}
-              className="class-image"
-              style={{height:"150px"}}
-            />
-            <p className="class-name">{classInfo.name}</p>
-          </div>
-        ))}
 
-</div>
       </div>
-      <form className="flex items-center" style={{
-    position: "absolute",
-    top: "100px", 
-    right: "570px", 
-  }}>
-            <label htmlFor="search" className="sr-only">
-              Search
-            </label>
-            <div className="relative w-full xl:w-96">
-              <input
-                type="text"
-                id="search"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full px-4 py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-500 dark:focus:border-orange-500"
-                placeholder="Search for a class..."
-                required
-              />
-            </div>
-          </form>
+
+      <div className="class-list">
+        <div
+          className="class-list"
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "space-between",
+            alignItems: "center",
+            position: "absolute",
+            top: "210px",
+            right: "50px",
+          }}
+        >
+            
+
+      
+
+
+        </div>
+      </div>
+      <form
+        className="flex items-center"
+        style={{
+          height: "150px",
+          position: "relative",
+          top: "1%",
+          left: "34%",
+          transform: "translate(-50%, -50%)",
+        }}
+      >
+        <label htmlFor="search" className="sr-only">
+          Search
+        </label>
+        <div className="relative w-full xl:w-96">
+          <input
+            type="text"
+            id="search"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full px-4 py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-orange-500 dark:focus:border-orange-500"
+            placeholder="Search for a class..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            required
+          />
+        </div>
+      </form>
+      <div className="grid grid-cols-3 gap-4"style={{ marginRight: '100px' }}>
+  {filteredClasses.map((classInfo) => (
+    <div key={classInfo.id}>
+      <div style={{ flex: '1', minWidth: '50px', margin: '50px 0', padding: '5px' }}>
+        <a
+          href="#"
+          className="flex items-center bg-white border border-gray-500 rounded-lg hover:bg-gray-100 dark:border-gray-1000 dark-bg-gray-800 dark-hover-bg-gray-700"
+          style={{ boxShadow: '10px 2px 5px rgba(0, 0, 0, 0.1)' }}
+        >
+          <img
+            className="object-cover w-full rounded-t-lg h-45 md:h-48 md:w-48"
+            src={classInfo.image}
+            alt={classInfo.name}
+          />
+          <div className="flex flex-col justify-between p-4 leading-normal">
+            <h5 className="mb-2 text-2xl font-bold text-gray-900 dark-text-white">
+              {classInfo.name}
+            </h5>
+          </div>
+        </a>
+      </div>
+    </div>
+  ))}
+</div>
+
     </div>
   );
 }
