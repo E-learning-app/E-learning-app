@@ -11,12 +11,13 @@ const UserHome = () => {
       .get(`http://localhost:3000/classess/userAcceptedClass/${user.id}`)
       .then((response) => {
         setCourses(response.data);
+      
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
-
+console.log("this is the courses ", courses)
   return (
     <div>
       <style>
