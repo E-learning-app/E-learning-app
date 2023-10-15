@@ -21,6 +21,11 @@ const UserHome = () => {
       });
   }, []);
 console.log("this is the courses ", courses)
+
+const filteredClasses = courses.filter((cls) => {
+  return cls.name.toLowerCase().includes(searchTerm.toLowerCase());
+});
+
   return (
     <div>
     <div  >

@@ -71,7 +71,7 @@ function Classes() {
   };
 
   return (
-    <div className="px-3 py-4 flex" style={{ backgroundColor: "#D3D3D3", flex: 1, overflowY: "auto" }}>
+    <div className="px-3 py-4 flex" style={{  flex: 1, overflowY: "auto" }}>
 
       <button
         onClick={openModal}
