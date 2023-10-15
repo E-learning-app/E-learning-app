@@ -24,7 +24,7 @@ const UserHome = () => {
   });
 
   return (
-    <div style={{backgroundColor : "#C2C0C0"}}>
+    <div>
     <div  >
       <div >
       
