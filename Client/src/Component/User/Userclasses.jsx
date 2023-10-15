@@ -35,7 +35,7 @@ function Userclasses() {
   };
 
   return (
-    <div style={{backgroundColor: '#D3D3D3'  }}>
+    <div>
     <div  >
       <div >
         <form className="flex items-center" >

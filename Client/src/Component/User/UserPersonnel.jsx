@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useTodoContext } from './TodoContext';
+import { HiOutlineTrash } from 'react-icons/hi';
 
 const UserPersonnel = () => {
   const { todos, setTodos } = useTodoContext();
@@ -19,24 +20,39 @@ const UserPersonnel = () => {
   };
 
   return (
-    <div style={{ textAlign: 'center', margin: '20px' }}>
-      <h2 style={{ fontSize: '24px' }}>Todo List</h2>
-      <div style={{ marginTop: '10px' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        padding: '20px',
+        maxWidth: '600px',
+        margin: '0 auto',
+      }}
+    >
+      <h2 style={{ fontSize: '32px' }}>Todo List</h2>
+      <div style={{ display: 'flex', alignItems: 'center' }}>
         <input
           type="text"
           value={todoInput}
           onChange={(e) => setTodoInput(e.target.value)}
           placeholder="Add a new todo"
-          style={{ padding: '5px', marginRight: '10px' }}
+          style={{
+            padding: '10px',
+            fontSize: '18px',
+            marginRight: '20px',
+            flex: 1,
+          }}
         />
         <button
           onClick={addTodo}
           style={{
-            backgroundColor: '#007bff',
+            backgroundColor: '#FF6219',
             color: 'white',
             border: 'none',
-            padding: '5px 10px',
+            padding: '10px 20px',
             cursor: 'pointer',
+            fontSize: '18px',
           }}
         >
           Add
@@ -49,24 +65,28 @@ const UserPersonnel = () => {
             style={{
               display: 'flex',
               justifyContent: 'space-between',
-              alignItems: 'center',
+         
               border: '1px solid #ccc',
               padding: '10px',
-              marginTop: '10px',
+              margin: '10px 0',
+              maxWidth: '100%',
+              width: '100%', // Set a fixed width
+              fontSize: '24px',
             }}
           >
             {todo}
             <button
               onClick={() => removeTodo(index)}
               style={{
-                backgroundColor: '#dc3545',
+                backgroundColor: 'red',
                 color: 'white',
                 border: 'none',
-                padding: '5px 10px',
+                padding: '10px 20px',
                 cursor: 'pointer',
+                fontSize: '20px',
               }}
             >
-              Remove
+              <HiOutlineTrash size={24} />
             </button>
           </li>
         ))}

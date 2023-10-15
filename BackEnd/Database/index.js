@@ -1,7 +1,7 @@
 const { Sequelize, DataTypes, INTEGER } = require("sequelize");
 const config = require("./config/config.json");
 
-const sequelize = new Sequelize(config.database, config.User, config.password, {
+const sequelize = new Sequelize(config.database, config.user, config.password, {
   host: config.host,
   dialect: "mysql",
 });
@@ -49,14 +49,14 @@ const StudentClasses = sequelize.define('StudentClasses', {
 
 db.StudentClasses = StudentClasses
 
-// db.User.belongsToMany(db.Course, {
-//   through: "StudentCourses",
-//   foreignKey: "studentId",
-// });
-// db.Course.belongsToMany(db.User, {
-//   through: "StudentCourses",
-//   foreignKey: "courseId",
-// });
+db.User.belongsToMany(db.Course, {
+  through: "StudentCourses",
+  foreignKey: "studentId",
+});
+db.Course.belongsToMany(db.User, {
+  through: "StudentCourses",
+  foreignKey: "courseId",
+});
 
 const connect = async () => {
   try {
@@ -67,7 +67,7 @@ const connect = async () => {
   }
 };
 
-// db.sequelize.sync({ force: true });
+//db.sequelize.sync({ force: true });
 
 connect();
 module.exports = db;
