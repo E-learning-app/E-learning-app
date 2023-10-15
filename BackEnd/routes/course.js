@@ -6,10 +6,11 @@ const {
   addCourseToClass,
   updateCourseInClass,
   deleteCourseFromClass,
+  upload,
 } = require("../controllers/course");
 
 router.get("/:classId", getAllCoursesFromClass);
-router.post("/:classId", addCourseToClass);
+router.post("/:classId", upload, addCourseToClass);
 router.put("/:courseId", updateCourseInClass);
 router.delete("/:courseId", deleteCourseFromClass);
 
