@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { userContext } from "../../App";
 
+
 function Userclasses() {
   const [searchTerm, setSearchTerm] = useState("");
   const { user } = useContext(userContext);
@@ -62,7 +63,7 @@ function Userclasses() {
       </div>
       <div className="class-container grid grid-cols-3 gap-4">
         {filteredClasses.map((cls) => (
-          <div key={cls.id} className="class-card">
+         <div key={cls.id} className="class-card">
             <a
               href="#"
               className="flex items-center bg-white border border-gray-500 rounded-lg hover-bg-gray-100 dark-border-gray-1000 dark-bg-gray-800 dark-hover-bg-gray-700"

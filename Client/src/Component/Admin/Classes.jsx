@@ -257,7 +257,7 @@ function Classes() {
       </form>
       <div className="grid grid-cols-3 gap-4" style={{ marginRight: '100px' }}>
         {filteredClasses.map((classInfo) => (
-          <Link to={`/ClassesLayout/classes/${classInfo.id}`}><div key={classInfo.id}>
+          <Link to={`/layout/info/${classInfo.id}`}><div key={classInfo.id}>
             <div style={{ flex: '1', minWidth: '50px', margin: '50px 0', padding: '5px', cursor: 'pointer', }}>
               <a
                 href="#"
