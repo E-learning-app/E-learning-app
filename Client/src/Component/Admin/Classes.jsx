@@ -8,7 +8,6 @@ function Classes() {
   const [image, setImage] = useState("");
   const [classList, setClassList] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  console.log(image);
 
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
@@ -45,7 +44,7 @@ function Classes() {
     try {
       const response = await axios.post("http://localhost:3000/classess/", {
         name,
-        image,
+        image: image,
       });
       setClassList([...classList, { name, image }]);
       setName("");
