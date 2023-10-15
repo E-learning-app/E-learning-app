@@ -1,9 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
 
-const AddCourse = () => {
-  const [name, setName] = useState("");
-  const [file, setFile] = useState("");
+const AddCourse = ({ classId, fetchCourses }) => {
+    console.log(classId)
+    const [name, setName] = useState("");
+    const [file, setFile] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -12,15 +13,16 @@ const AddCourse = () => {
     formData.append("name", name);
     formData.append("file", file);
 
-    try {
-      await axios.post("http://localhost:3000/courses/7", formData, {
+try {
+    await axios.post(`http://localhost:3000/courses/${classId}`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
-      });
-      console.log("Course added successfully!");
-    } catch (error) {
-      console.error("Error adding course:", error);
-    }
-  };
+    });
+    console.log("Course added successfully!");
+    fetchCourses()
+} catch (error) {
+    console.error("Error adding course:", error);
+}
+};
 
   return (
     <div className="max-w-md mx-auto "         style={{ position: "absolute", left: "750px", top: "150px" }}
