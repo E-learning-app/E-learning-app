@@ -4,7 +4,7 @@ import axios from 'axios';
 import Course from './Course';
 import AddCourse from './AddCourse';
 
-const   Courses = () => {
+const Courses = () => {
     const [courses, setCourses] = useState([]);
     const { classId } = useParams();
     console.log(classId)
@@ -20,17 +20,16 @@ const   Courses = () => {
     useEffect(() => {
         fetchCourses();
     }, []);
-    console.log(courses)
     return (
         <div>
-             <div><AddCourse/></div>
+            <div><AddCourse classId={classId} fetchCourses={fetchCourses} /></div>
             <ul className="course-list">
                 {courses.map(course => (
                     <li className="course-list-item" key={course.id}>
                         <Course course={course} />
                     </li>
                 ))}
-                
+
             </ul>
         </div>
     );

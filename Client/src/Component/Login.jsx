@@ -67,18 +67,34 @@ const handleSubmit = (e) => {
                       <h5 className="fw-normal mb-3 pb-3" style={{ letterSpacing: '1px' }}>
                         Sign into your account
                       </h5>
-                      <div className="form-outline mb-4">
-                        <input type="email" id="form2Example17" className="form-control form-control-lg" name='email' onChange={handleChange} />
-                        <label className="form-label" htmlFor="form2Example17">
-                          Email address
-                        </label>
-                      </div>
-                      <div className="form-outline mb-4">
-                        <input type="password" id="form2Example27" className="form-control form-control-lg" name='password' onChange={handleChange} />
-                        <label className="form-label" htmlFor="form2Example27">
-                          Password
-                        </label>
-                      </div>
+                      <div className="w-full max-w-sm">
+  <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+    Email address
+  </label>
+  <input
+    type="email"
+    id="email"
+    className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-orange-500"
+    name="email"
+    onChange={handleChange}
+    placeholder="Enter your email"
+  />
+</div>
+
+<div className="w-full max-w-sm mt-4">
+  <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+    Password
+  </label>
+  <input
+    type="password"
+    id="password"
+    className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-orange-500"
+    name="password"
+    onChange={handleChange}
+    placeholder="Enter your password"
+  />
+</div>
+
                       <div className="pt-1 mb-4">
                        <button className="btn btn-dark btn-lg btn-block" type="button" onClick={handleSubmit} style={{ backgroundColor: '#ff6219' }}>
                           Login 

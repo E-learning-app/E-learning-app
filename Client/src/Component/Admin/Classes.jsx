@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from 'react-router-dom';
+import AddCourse from "./AddCourse";
 
 function Classes() {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -8,7 +9,6 @@ function Classes() {
   const [image, setImage] = useState("");
   const [classList, setClassList] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  console.log(image);
 
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
@@ -45,7 +45,7 @@ function Classes() {
     try {
       const response = await axios.post("http://localhost:3000/classess/", {
         name,
-        image,
+        image: image,
       });
       setClassList([...classList, { name, image }]);
       setName("");
@@ -71,7 +71,7 @@ function Classes() {
   };
 
   return (
-    <div className="px-3 py-4 flex" style={{ backgroundColor: "#D3D3D3", flex: 1, overflowY: "auto" }}>
+    <div className="px-3 py-4 flex" style={{  flex: 1, overflowY: "auto" }}>
 
       <button
         onClick={openModal}
@@ -256,27 +256,27 @@ function Classes() {
         </div>
       </form>
       <div className="grid grid-cols-3 gap-4" style={{ marginRight: '100px' }}>
-        {filteredClasses.map((classInfo) => (
-          <Link to={`/layout/info/${classInfo.id}`}><div key={classInfo.id}>
-            <div style={{ flex: '1', minWidth: '50px', margin: '50px 0', padding: '5px', cursor: 'pointer', }}>
-              <a
-                href="#"
-                className="flex items-center bg-white border border-gray-500 rounded-lg hover:bg-gray-100 dark:border-gray-1000 dark-bg-gray-800 dark-hover-bg-gray-700"
-                style={{ boxShadow: '10px 2px 5px rgba(0, 0, 0, 0.1)' }}
-              >
-                <img
-                  className="object-cover w-full rounded-t-lg h-45 md:h-48 md:w-48"
-                  src={classInfo.image}
-                  alt={classInfo.name}
-                />
-                <div className="flex flex-col justify-between p-4 leading-normal">
-                  <h5 className="mb-2 text-2xl font-bold text-gray-900 dark-text-white">
-                    {classInfo.name}
-                  </h5>
-                </div>
-              </a>
-            </div>
-          </div></Link>
+      {filteredClasses.map((classInfo) => (
+  <Link to={`/layout/info/${classInfo.id}`} key={classInfo.id}>
+    <div style={{ flex: '1', minWidth: '50px', margin: '50px 0', padding: '5px', cursor: 'pointer' }}>
+      <a
+        href="#"
+        className="flex flex-col items-center bg-white border border-gray-500 rounded-lg hover:bg-gray-100 dark:border-gray-1000 dark-bg-gray-800 dark-hover-bg-gray-700"
+        style={{ boxShadow: '10px 2px 5px rgba(0, 0, 0, 0.1)' }}
+      >
+        <img
+          className="object-cover w-full rounded-t-lg h-45 md:h-48 md:w-48"
+          src={classInfo.image}
+        />
+        <div className="flex flex-col items-center justify-between p-4 leading-normal">
+          <h5 className="mb-2 text-2xl font-bold text-gray-900 dark-text-white">
+            {classInfo.name}
+          </h5>
+        
+        </div>
+      </a>
+    </div>
+  </Link>
         ))}
       </div>
 

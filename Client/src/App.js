@@ -87,21 +87,16 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       {
-        path: "admin/home",
-        element: <Home />,
-      },
-      {
         path: "admin/users",
         element: <Users />,
       },
       {
         path: "admin/classes",
         element: <Classes />,
-
       },
       {
         path: "info/:classId",
-        element: <Courses/>,
+        element: <Courses />,
       },
     ],
   },
@@ -123,7 +118,7 @@ const router = createBrowserRouter([
       },
       {
         path: "info/:classId",
-        element: <UserCourses/>,
+        element: <UserCourses />,
       },
     ],
   },
@@ -134,7 +129,7 @@ const router = createBrowserRouter([
       {
         path: "classes/home",
         element: <Classeshome />,
-      }
+      },
     ],
   },
 ]);
