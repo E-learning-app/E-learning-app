@@ -13,7 +13,7 @@ function Usernavbar() {
     <div >
          <Navbar  fluid rounded style={navbarStyle}>
         <Navbar.Brand>
-          <Link to="home">
+          <Link to="user/home">
             <i
               className="fas fa-book-open fa-2x me-3"
               style={{ color: "#ff6219" }}
