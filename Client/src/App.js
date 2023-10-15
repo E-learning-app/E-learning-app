@@ -19,7 +19,8 @@ import Userhome from "./Component/User/Userhome";
 import Classesnavbar from "./Component/Classes/Classesnavbar";
 import Classeshome from "./Component/Classes/Classeshome";
 import Classessidebar from "./Component/Classes/Classessidebar";
-
+import UserPersonnel from "./Component/User/UserPersonnel";
+import { TodoProvider } from "./Component/User/TodoContext"
 
 export const userContext =createContext()
 const Layout = () => {
@@ -113,7 +114,11 @@ const router = createBrowserRouter([
       {
         path: "user/home",
         element: <Userhome/>,
-      }
+      },
+      {
+        path: "user/personalSpace",
+        element: <UserPersonnel />,
+      },
       
     ],
   },
@@ -132,16 +137,20 @@ const router = createBrowserRouter([
 
 function App() {
   const [user, setUser] = useState("")
+  
   console.log("i'm cosole logged from app ",user)
   return (
+    <TodoProvider>
     <div>
       <userContext.Provider value={{user,setUser}} >
+        
       <div>
         
          <RouterProvider router={router} />
       </div>
       </userContext.Provider >
     </div>
+    </TodoProvider>
   );
 }
 export default App;
