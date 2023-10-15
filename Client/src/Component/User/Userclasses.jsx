@@ -35,9 +35,10 @@ function Userclasses() {
   };
 
   return (
-    <div >
-      <div>
-        <form >
+    <div>
+    <div  >
+      <div >
+        <form className="flex items-center" >
           <label htmlFor="search" className="sr-only">
             Search
           </label>
@@ -86,6 +87,7 @@ function Userclasses() {
           </div>
         ))}
       </div>
+    </div>
     </div>
   );
 }

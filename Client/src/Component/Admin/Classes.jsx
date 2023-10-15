@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from 'react-router-dom';
-import Courses from "./Courses"
 
 function Classes() {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -272,9 +271,7 @@ function Classes() {
                 />
                 <div className="flex flex-col justify-between p-4 leading-normal">
                   <h5 className="mb-2 text-2xl font-bold text-gray-900 dark-text-white">
-
                     {classInfo.name}
-
                   </h5>
                 </div>
               </a>

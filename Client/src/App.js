@@ -44,15 +44,13 @@ const Layout = () => {
 const UserLayout = () => {
   return (
     <div>
-      <div>
-        <Usernavbar />
-        <div className="flex" style={{ minHeight: "100vh" }}>
-          <div>
-            <Classessidebar />
-          </div>
-          <div className="flex flex-grow-1" style={{ minHeight: "100vh" }}>
-            <Outlet />
-          </div>
+      <Usernavbar />
+      <div className="flex" style={{ minHeight: "100vh" }}>
+        <div>
+          <Classessidebar />
+        </div>
+        <div className="flex flex-grow-1" style={{ minHeight: "100vh" }}>
+          <Outlet />
         </div>
       </div>
     </div>
