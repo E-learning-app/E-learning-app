@@ -14,17 +14,20 @@ const UserHome = () => {
       .get(`http://localhost:3000/classess/userAcceptedClass/${user.id}`)
       .then((response) => {
         setCourses(response.data);
+      
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
-  const filteredClasses = courses.filter((course) => {
-    return course.name.toLowerCase().includes(searchTerm.toLowerCase());
-  });
+console.log("this is the courses ", courses)
+
+const filteredClasses = courses.filter((cls) => {
+  return cls.name.toLowerCase().includes(searchTerm.toLowerCase());
+});
 
   return (
-    <div style={{backgroundColor : "#C2C0C0"}}>
+    <div>
     <div  >
       <div >
       
