@@ -14,15 +14,14 @@ import Sidebars from "./Component/Admin/Sidebar";
 import Users from "./Component/Admin/Users";
 import Classes from "./Component/Admin/Classes";
 import Userhome from "./Component/User/Userhome";
-import AddCourse from "./Component/Admin/AddCourse";
 import Userclasses from "./Component/User/Userclasses";
 import Usernavbar from "./Component/User/Usernavbar";
-import Userhome from "./Component/User/Userhome";
 import Classesnavbar from "./Component/Classes/Classesnavbar";
 import Classeshome from "./Component/Classes/Classeshome";
 import Classessidebar from "./Component/Classes/Classessidebar";
 import UserPersonnel from "./Component/User/UserPersonnel";
 import { TodoProvider } from "./Component/User/TodoContext";
+import Courses from "./Component/Admin/Courses";
 
 export const userContext = createContext();
 const Layout = () => {
@@ -127,6 +126,10 @@ const router = createBrowserRouter([
       {
         path: "classes/home",
         element: <Classeshome />,
+      },
+      {
+        path: "classes/:classId",
+        element: <Courses />,
       },
     ],
   },
