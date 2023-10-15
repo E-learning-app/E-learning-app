@@ -31,23 +31,22 @@ db.Course.belongsToMany(db.Class, {
   foreignKey: "courseId",
 });
 
-const StudentClasses = sequelize.define('StudentClasses', {
+const StudentClasses = sequelize.define("StudentClasses", {
   status: {
-    type: DataTypes.ENUM('pending', 'accepted', 'rejected'),
-    defaultValue: 'pending',
+    type: DataTypes.ENUM("pending", "accepted", "rejected"),
+    defaultValue: "pending",
   },
   studentId: {
     type: DataTypes.INTEGER,
-    allowNull: false 
-  } ,
+    allowNull: false,
+  },
   classId: {
-    type :DataTypes.INTEGER,
-    allowNull :false,
-   } 
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
 });
 
-
-db.StudentClasses = StudentClasses
+db.StudentClasses = StudentClasses;
 
 db.User.belongsToMany(db.Course, {
   through: "StudentCourses",

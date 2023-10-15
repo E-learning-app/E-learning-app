@@ -10,6 +10,7 @@ require("dotenv").config();
 
 app.use(cors());
 app.use(express.json());
+app.use("/files", express.static(__dirname + "/files"));
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/classess", classRouter);

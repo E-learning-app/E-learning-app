@@ -53,7 +53,7 @@ const UserHome = () => {
       <div className="class-container grid grid-cols-3 gap-4">
        {courses.length > 0 ? (
  filteredClasses.map((course) => (
-          <div key={course.id} className="class-card">
+  <Link to={`/UserLayout/info/${course.id}`}> <div key={course.id} className="class-card">
             <a
               href="#"
               className="flex items-center bg-white border border-gray-500 rounded-lg hover-bg-gray-100 dark-border-gray-1000 dark-bg-gray-800 dark-hover-bg-gray-700"
@@ -69,7 +69,7 @@ const UserHome = () => {
                 </h5>
               </div>
             </a>
-          </div>
+          </div></Link>
            ))
           ) : (
             <div>
