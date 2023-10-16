@@ -45,7 +45,8 @@ const addCourseToClass = async (req, res) => {
 };
 const updateCourseInClass = async (req, res) => {
   const courseId = req.params.courseId;
-  const { name, file } = req.body;
+  const { name } = req.body;
+  const file = req.file.path;
   try {
     const course = await Course.findByPk(courseId);
     if (!course) {

@@ -50,59 +50,55 @@ function Signup() {
                         Create your account
                       </h5>
                       <div className="w-full max-w-sm">
-  <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-   First name
-  </label>
-  <input
-    type="email"
-    id="email"
-    className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500"
-    name="fistName"
-    onChange={handleChange}
-    placeholder="Enter your email"
-  />
-</div>
+                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="firstName">
+                          First name
+                        </label>
+                        <input
+                          type="text"
+                          className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500"
+                          name="firstName"
+                          onChange={handleChange}
+                          placeholder="Enter your first name"
+                        />
+                      </div>
 
-<div className="w-full max-w-sm mt-4">
-  <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
-    Last name
-  </label>
-  <input
-    type="password"
-    id="password"
-    className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500"
-    name="lastName"
-    onChange={handleChange}
-    placeholder="Enter your password"
-  />
-</div>
-               <div className="w-full max-w-sm">
-  <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-    Email address
-  </label>
-  <input
-    type="email"
-    id="email"
-    className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500"
-    name="email"
-    onChange={handleChange}
-    placeholder="Enter your email"
-  />
-</div>
+                      <div className="w-full max-w-sm mt-4">
+                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="lastName">
+                          Last name
+                        </label>
+                        <input
+                          type="text"
+                          className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500"
+                          name="lastName"
+                          onChange={handleChange}
+                          placeholder="Enter your last name"
+                        />
+                      </div>
+                      <div className="w-full max-w-sm">
+                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+                          Email address
+                        </label>
+                        <input
+                          type="email"
+                          className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500"
+                          name="email"
+                          onChange={handleChange}
+                          placeholder="Enter your email"
+                        />
+                      </div>
 
-<div className="w-full max-w-sm mt-4">
-  <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
-    Password
-  </label>
-  <input
-    type="password"
-    id="password"
-    className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500"
-    name="password"
-    onChange={handleChange}
-    placeholder="Enter your password"
-  />
-</div>
+                      <div className="w-full max-w-sm mt-4">
+                        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+                          Password
+                        </label>
+                        <input
+                          type="password"
+                          className="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:border-blue-500"
+                          name="password"
+                          onChange={handleChange}
+                          placeholder="Enter your password"
+                        />
+                      </div>
                       <div className="pt-1 mb-4">
                         <button className="btn btn-dark btn-lg btn-block" type="submit" style={{ backgroundColor: '#ff6219' }} onClick={handleSubmit} > Signup
                         </button>
