@@ -45,18 +45,19 @@ const Course = ({ course, fetchCourses }) => {
         color: "red",
         position: "relative",
         left: "50px",
-        top: "145px"
+        top: "145px",
+        cursor: "pointer"
     };
 
     return (
         <div>
-            <div onClick={handleOpenPDF} style={{ cursor: "pointer" }}>
-                <i className="fa fa-file-pdf-o" style={iconStyle}></i>
-                <h3 style={{ position: "relative", left: "100px", top: "100px" }}>{course.name}</h3>
+            <div>
+                <i className="fa fa-file-pdf-o" style={iconStyle} styleonClick={handleOpenPDF}></i>
+                <h3 style={{ position: "relative", left: "100px", top: "100px", cursor: "pointer", display: "flex" }} onClick={handleOpenPDF}>{course.name}</h3>
             </div>
             <div>
                 {isEditMode ? (
-                    <div>
+                    <div style={{ position: "relative", left: "30px", top: "100px" }}>
                         <form>
                             <input
                                 type="text"
@@ -83,15 +84,16 @@ const Course = ({ course, fetchCourses }) => {
                                 style={{ position: "relative", left: "-40px" }}
                                 onClick={() => setIsEditMode(false)}> Cancel </button>
                         </form>
-                    </div>) : (
-                    <button
-                        type="button"
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                        style={{ position: "relative", left: "100px", top: "100px" }}
-                        onClick={() => setIsEditMode(true)}
-                    >
-                        Update
-                    </button>)}
+                    </div>)
+                    : (
+                        <button
+                            type="button"
+                            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                            style={{ position: "relative", left: "100px", top: "100px" }}
+                            onClick={() => setIsEditMode(true)}
+                        >
+                            Update
+                        </button>)}
                 <button
                     type="button"
                     className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
