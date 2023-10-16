@@ -2,7 +2,6 @@ import { useState } from "react";
 import axios from "axios";
 
 const AddCourse = ({ classId, fetchCourses }) => {
-  console.log(classId)
   const [name, setName] = useState("");
   const [file, setFile] = useState("");
 
@@ -52,7 +51,9 @@ const AddCourse = ({ classId, fetchCourses }) => {
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             accept="application/pdf"
             required
-            onChange={(e) => setFile(e.target.files[0])}
+            onChange={(e) => {
+              setFile(e.target.files[0]);
+            }}
           />
         </div>
         <div className="mb-4 flex justify-between items-center">
